@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangma.cn.mapper.InStoreMapper">
+  <resultMap id="BaseResultMap" type="com.shangma.cn.entity.InStore">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="return_in_store_flag" jdbcType="TINYINT" property="returnInStoreFlag" />
+    <result column="in_good_info_id" jdbcType="BIGINT" property="inGoodInfoId" />
+    <result column="return_factory_ location" jdbcType="VARCHAR" property="returnFactoryLocation" />
+    <result column="in_store_note" jdbcType="VARCHAR" property="inStoreNote" />
+    <result column="document_maker" jdbcType="VARCHAR" property="documentMaker" />
+    <result column="making_time" jdbcType="TIMESTAMP" property="makingTime" />
+    <result column="approver" jdbcType="VARCHAR" property="approver" />
+    <result column="approval_opinion" jdbcType="VARCHAR" property="approvalOpinion" />
+    <result column="approval_time" jdbcType="TIMESTAMP" property="approvalTime" />
+    <result column="approval_status" jdbcType="TINYINT" property="approvalStatus" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="creator_id" jdbcType="BIGINT" property="creatorId" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="update_id" jdbcType="BIGINT" property="updateId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, return_in_store_flag, in_good_info_id, "return_factory_ location", in_store_note, 
+    document_maker, making_time, approver, approval_opinion, approval_time, approval_status, 
+    add_time, creator_id, update_time, update_id
+  </sql>
+  <select id="selectByExample" parameterType="com.shangma.cn.entity.InStoreExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_in_store
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_in_store
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_in_store
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shangma.cn.entity.InStoreExample">
+    delete from t_in_store
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shangma.cn.entity.InStore">
+    insert into t_in_store (id, return_in_store_flag, in_good_info_id, 
+      "return_factory_ location", in_store_note, document_maker, 
+      making_time, approver, approval_opinion, 
+      approval_time, approval_status, add_time, 
+      creator_id, update_time, update_id
+      )
+    values (#{id,jdbcType=BIGINT}, #{returnInStoreFlag,jdbcType=TINYINT}, #{inGoodInfoId,jdbcType=BIGINT}, 
+      #{returnFactoryLocation,jdbcType=VARCHAR}, #{inStoreNote,jdbcType=VARCHAR}, #{documentMaker,jdbcType=VARCHAR}, 
+      #{makingTime,jdbcType=TIMESTAMP}, #{approver,jdbcType=VARCHAR}, #{approvalOpinion,jdbcType=VARCHAR}, 
+      #{approvalTime,jdbcType=TIMESTAMP}, #{approvalStatus,jdbcType=TINYINT}, #{addTime,jdbcType=TIMESTAMP}, 
+      #{creatorId,jdbcType=BIGINT}, #{updateTime,jdbcType=TIMESTAMP}, #{updateId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.shangma.cn.entity.InStore">
+    insert into t_in_store
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="returnInStoreFlag != null">
+        return_in_store_flag,
+      </if>
+      <if test="inGoodInfoId != null">
+        in_good_info_id,
+      </if>
+      <if test="returnFactoryLocation != null">
+        "return_factory_ location",
+      </if>
+      <if test="inStoreNote != null">
+        in_store_note,
+      </if>
+      <if test="documentMaker != null">
+        document_maker,
+      </if>
+      <if test="makingTime != null">
+        making_time,
+      </if>
+      <if test="approver != null">
+        approver,
+      </if>
+      <if test="approvalOpinion != null">
+        approval_opinion,
+      </if>
+      <if test="approvalTime != null">
+        approval_time,
+      </if>
+      <if test="approvalStatus != null">
+        approval_status,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="creatorId != null">
+        creator_id,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="updateId != null">
+        update_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="returnInStoreFlag != null">
+        #{returnInStoreFlag,jdbcType=TINYINT},
+      </if>
+      <if test="inGoodInfoId != null">
+        #{inGoodInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="returnFactoryLocation != null">
+        #{returnFactoryLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="inStoreNote != null">
+        #{inStoreNote,jdbcType=VARCHAR},
+      </if>
+      <if test="documentMaker != null">
+        #{documentMaker,jdbcType=VARCHAR},
+      </if>
+      <if test="makingTime != null">
+        #{makingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="approver != null">
+        #{approver,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalOpinion != null">
+        #{approvalOpinion,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalTime != null">
+        #{approvalTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="approvalStatus != null">
+        #{approvalStatus,jdbcType=TINYINT},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creatorId != null">
+        #{creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateId != null">
+        #{updateId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shangma.cn.entity.InStoreExample" resultType="java.lang.Long">
+    select count(*) from t_in_store
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_in_store
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.returnInStoreFlag != null">
+        return_in_store_flag = #{record.returnInStoreFlag,jdbcType=TINYINT},
+      </if>
+      <if test="record.inGoodInfoId != null">
+        in_good_info_id = #{record.inGoodInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="record.returnFactoryLocation != null">
+        "return_factory_ location" = #{record.returnFactoryLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.inStoreNote != null">
+        in_store_note = #{record.inStoreNote,jdbcType=VARCHAR},
+      </if>
+      <if test="record.documentMaker != null">
+        document_maker = #{record.documentMaker,jdbcType=VARCHAR},
+      </if>
+      <if test="record.makingTime != null">
+        making_time = #{record.makingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.approver != null">
+        approver = #{record.approver,jdbcType=VARCHAR},
+      </if>
+      <if test="record.approvalOpinion != null">
+        approval_opinion = #{record.approvalOpinion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.approvalTime != null">
+        approval_time = #{record.approvalTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.approvalStatus != null">
+        approval_status = #{record.approvalStatus,jdbcType=TINYINT},
+      </if>
+      <if test="record.addTime != null">
+        add_time = #{record.addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.creatorId != null">
+        creator_id = #{record.creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateId != null">
+        update_id = #{record.updateId,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_in_store
+    set id = #{record.id,jdbcType=BIGINT},
+      return_in_store_flag = #{record.returnInStoreFlag,jdbcType=TINYINT},
+      in_good_info_id = #{record.inGoodInfoId,jdbcType=BIGINT},
+      "return_factory_ location" = #{record.returnFactoryLocation,jdbcType=VARCHAR},
+      in_store_note = #{record.inStoreNote,jdbcType=VARCHAR},
+      document_maker = #{record.documentMaker,jdbcType=VARCHAR},
+      making_time = #{record.makingTime,jdbcType=TIMESTAMP},
+      approver = #{record.approver,jdbcType=VARCHAR},
+      approval_opinion = #{record.approvalOpinion,jdbcType=VARCHAR},
+      approval_time = #{record.approvalTime,jdbcType=TIMESTAMP},
+      approval_status = #{record.approvalStatus,jdbcType=TINYINT},
+      add_time = #{record.addTime,jdbcType=TIMESTAMP},
+      creator_id = #{record.creatorId,jdbcType=BIGINT},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      update_id = #{record.updateId,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shangma.cn.entity.InStore">
+    update t_in_store
+    <set>
+      <if test="returnInStoreFlag != null">
+        return_in_store_flag = #{returnInStoreFlag,jdbcType=TINYINT},
+      </if>
+      <if test="inGoodInfoId != null">
+        in_good_info_id = #{inGoodInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="returnFactoryLocation != null">
+        "return_factory_ location" = #{returnFactoryLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="inStoreNote != null">
+        in_store_note = #{inStoreNote,jdbcType=VARCHAR},
+      </if>
+      <if test="documentMaker != null">
+        document_maker = #{documentMaker,jdbcType=VARCHAR},
+      </if>
+      <if test="makingTime != null">
+        making_time = #{makingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="approver != null">
+        approver = #{approver,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalOpinion != null">
+        approval_opinion = #{approvalOpinion,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalTime != null">
+        approval_time = #{approvalTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="approvalStatus != null">
+        approval_status = #{approvalStatus,jdbcType=TINYINT},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creatorId != null">
+        creator_id = #{creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateId != null">
+        update_id = #{updateId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shangma.cn.entity.InStore">
+    update t_in_store
+    set return_in_store_flag = #{returnInStoreFlag,jdbcType=TINYINT},
+      in_good_info_id = #{inGoodInfoId,jdbcType=BIGINT},
+      "return_factory_ location" = #{returnFactoryLocation,jdbcType=VARCHAR},
+      in_store_note = #{inStoreNote,jdbcType=VARCHAR},
+      document_maker = #{documentMaker,jdbcType=VARCHAR},
+      making_time = #{makingTime,jdbcType=TIMESTAMP},
+      approver = #{approver,jdbcType=VARCHAR},
+      approval_opinion = #{approvalOpinion,jdbcType=VARCHAR},
+      approval_time = #{approvalTime,jdbcType=TIMESTAMP},
+      approval_status = #{approvalStatus,jdbcType=TINYINT},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      creator_id = #{creatorId,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_id = #{updateId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

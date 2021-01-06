@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangma.cn.mapper.InGoodInfoMapper">
+  <resultMap id="BaseResultMap" type="com.shangma.cn.entity.InGoodInfo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="good_id" jdbcType="BIGINT" property="goodId" />
+    <result column="good_brand" jdbcType="VARCHAR" property="goodBrand" />
+    <result column="good_name" jdbcType="VARCHAR" property="goodName" />
+    <result column="good_model" jdbcType="VARCHAR" property="goodModel" />
+    <result column="good_color" jdbcType="VARCHAR" property="goodColor" />
+    <result column="good_supplier" jdbcType="VARCHAR" property="goodSupplier" />
+    <result column="good_trace_message" jdbcType="VARCHAR" property="goodTraceMessage" />
+    <result column="return_factory_type" jdbcType="TINYINT" property="returnFactoryType" />
+    <result column="change_good_id" jdbcType="BIGINT" property="changeGoodId" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="creator_id" jdbcType="BIGINT" property="creatorId" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="update_id" jdbcType="BIGINT" property="updateId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, good_id, good_brand, good_name, good_model, good_color, good_supplier, good_trace_message, 
+    return_factory_type, change_good_id, add_time, creator_id, update_time, update_id
+  </sql>
+  <select id="selectByExample" parameterType="com.shangma.cn.entity.InGoodInfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_in_good_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_in_good_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_in_good_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shangma.cn.entity.InGoodInfoExample">
+    delete from t_in_good_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shangma.cn.entity.InGoodInfo">
+    insert into t_in_good_info (id, good_id, good_brand, 
+      good_name, good_model, good_color, 
+      good_supplier, good_trace_message, return_factory_type, 
+      change_good_id, add_time, creator_id, 
+      update_time, update_id)
+    values (#{id,jdbcType=BIGINT}, #{goodId,jdbcType=BIGINT}, #{goodBrand,jdbcType=VARCHAR}, 
+      #{goodName,jdbcType=VARCHAR}, #{goodModel,jdbcType=VARCHAR}, #{goodColor,jdbcType=VARCHAR}, 
+      #{goodSupplier,jdbcType=VARCHAR}, #{goodTraceMessage,jdbcType=VARCHAR}, #{returnFactoryType,jdbcType=TINYINT}, 
+      #{changeGoodId,jdbcType=BIGINT}, #{addTime,jdbcType=TIMESTAMP}, #{creatorId,jdbcType=BIGINT}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{updateId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shangma.cn.entity.InGoodInfo">
+    insert into t_in_good_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="goodId != null">
+        good_id,
+      </if>
+      <if test="goodBrand != null">
+        good_brand,
+      </if>
+      <if test="goodName != null">
+        good_name,
+      </if>
+      <if test="goodModel != null">
+        good_model,
+      </if>
+      <if test="goodColor != null">
+        good_color,
+      </if>
+      <if test="goodSupplier != null">
+        good_supplier,
+      </if>
+      <if test="goodTraceMessage != null">
+        good_trace_message,
+      </if>
+      <if test="returnFactoryType != null">
+        return_factory_type,
+      </if>
+      <if test="changeGoodId != null">
+        change_good_id,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="creatorId != null">
+        creator_id,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="updateId != null">
+        update_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="goodId != null">
+        #{goodId,jdbcType=BIGINT},
+      </if>
+      <if test="goodBrand != null">
+        #{goodBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="goodName != null">
+        #{goodName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodModel != null">
+        #{goodModel,jdbcType=VARCHAR},
+      </if>
+      <if test="goodColor != null">
+        #{goodColor,jdbcType=VARCHAR},
+      </if>
+      <if test="goodSupplier != null">
+        #{goodSupplier,jdbcType=VARCHAR},
+      </if>
+      <if test="goodTraceMessage != null">
+        #{goodTraceMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="returnFactoryType != null">
+        #{returnFactoryType,jdbcType=TINYINT},
+      </if>
+      <if test="changeGoodId != null">
+        #{changeGoodId,jdbcType=BIGINT},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creatorId != null">
+        #{creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateId != null">
+        #{updateId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shangma.cn.entity.InGoodInfoExample" resultType="java.lang.Long">
+    select count(*) from t_in_good_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_in_good_info
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.goodId != null">
+        good_id = #{record.goodId,jdbcType=BIGINT},
+      </if>
+      <if test="record.goodBrand != null">
+        good_brand = #{record.goodBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodName != null">
+        good_name = #{record.goodName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodModel != null">
+        good_model = #{record.goodModel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodColor != null">
+        good_color = #{record.goodColor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodSupplier != null">
+        good_supplier = #{record.goodSupplier,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodTraceMessage != null">
+        good_trace_message = #{record.goodTraceMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.returnFactoryType != null">
+        return_factory_type = #{record.returnFactoryType,jdbcType=TINYINT},
+      </if>
+      <if test="record.changeGoodId != null">
+        change_good_id = #{record.changeGoodId,jdbcType=BIGINT},
+      </if>
+      <if test="record.addTime != null">
+        add_time = #{record.addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.creatorId != null">
+        creator_id = #{record.creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateId != null">
+        update_id = #{record.updateId,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_in_good_info
+    set id = #{record.id,jdbcType=BIGINT},
+      good_id = #{record.goodId,jdbcType=BIGINT},
+      good_brand = #{record.goodBrand,jdbcType=VARCHAR},
+      good_name = #{record.goodName,jdbcType=VARCHAR},
+      good_model = #{record.goodModel,jdbcType=VARCHAR},
+      good_color = #{record.goodColor,jdbcType=VARCHAR},
+      good_supplier = #{record.goodSupplier,jdbcType=VARCHAR},
+      good_trace_message = #{record.goodTraceMessage,jdbcType=VARCHAR},
+      return_factory_type = #{record.returnFactoryType,jdbcType=TINYINT},
+      change_good_id = #{record.changeGoodId,jdbcType=BIGINT},
+      add_time = #{record.addTime,jdbcType=TIMESTAMP},
+      creator_id = #{record.creatorId,jdbcType=BIGINT},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      update_id = #{record.updateId,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shangma.cn.entity.InGoodInfo">
+    update t_in_good_info
+    <set>
+      <if test="goodId != null">
+        good_id = #{goodId,jdbcType=BIGINT},
+      </if>
+      <if test="goodBrand != null">
+        good_brand = #{goodBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="goodName != null">
+        good_name = #{goodName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodModel != null">
+        good_model = #{goodModel,jdbcType=VARCHAR},
+      </if>
+      <if test="goodColor != null">
+        good_color = #{goodColor,jdbcType=VARCHAR},
+      </if>
+      <if test="goodSupplier != null">
+        good_supplier = #{goodSupplier,jdbcType=VARCHAR},
+      </if>
+      <if test="goodTraceMessage != null">
+        good_trace_message = #{goodTraceMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="returnFactoryType != null">
+        return_factory_type = #{returnFactoryType,jdbcType=TINYINT},
+      </if>
+      <if test="changeGoodId != null">
+        change_good_id = #{changeGoodId,jdbcType=BIGINT},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creatorId != null">
+        creator_id = #{creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateId != null">
+        update_id = #{updateId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shangma.cn.entity.InGoodInfo">
+    update t_in_good_info
+    set good_id = #{goodId,jdbcType=BIGINT},
+      good_brand = #{goodBrand,jdbcType=VARCHAR},
+      good_name = #{goodName,jdbcType=VARCHAR},
+      good_model = #{goodModel,jdbcType=VARCHAR},
+      good_color = #{goodColor,jdbcType=VARCHAR},
+      good_supplier = #{goodSupplier,jdbcType=VARCHAR},
+      good_trace_message = #{goodTraceMessage,jdbcType=VARCHAR},
+      return_factory_type = #{returnFactoryType,jdbcType=TINYINT},
+      change_good_id = #{changeGoodId,jdbcType=BIGINT},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      creator_id = #{creatorId,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_id = #{updateId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
