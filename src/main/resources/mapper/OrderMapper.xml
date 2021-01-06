@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangma.cn.mapper.OrderMapper">
+  <resultMap id="BaseResultMap" type="com.shangma.cn.entity.Order">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="order_create_time" jdbcType="TIMESTAMP" property="orderCreateTime" />
+    <result column="order_type" jdbcType="VARCHAR" property="orderType" />
+    <result column="order_action" jdbcType="TINYINT" property="orderAction" />
+    <result column="bussiness_type" jdbcType="TINYINT" property="bussinessType" />
+    <result column="order_status" jdbcType="TINYINT" property="orderStatus" />
+    <result column="receiver_name" jdbcType="VARCHAR" property="receiverName" />
+    <result column="user_account" jdbcType="VARCHAR" property="userAccount" />
+    <result column="receiver_tel" jdbcType="VARCHAR" property="receiverTel" />
+    <result column="receiver_phone" jdbcType="VARCHAR" property="receiverPhone" />
+    <result column="postal_code" jdbcType="VARCHAR" property="postalCode" />
+    <result column="receiver_address" jdbcType="VARCHAR" property="receiverAddress" />
+    <result column="delivery_zone" jdbcType="VARCHAR" property="deliveryZone" />
+    <result column="delivery_type" jdbcType="TINYINT" property="deliveryType" />
+    <result column="delivery_price" jdbcType="DECIMAL" property="deliveryPrice" />
+    <result column="pay_type" jdbcType="TINYINT" property="payType" />
+    <result column="own_take_time" jdbcType="TIMESTAMP" property="ownTakeTime" />
+    <result column="receiver_email" jdbcType="VARCHAR" property="receiverEmail" />
+    <result column="remitter" jdbcType="VARCHAR" property="remitter" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, order_create_time, order_type, order_action, bussiness_type, order_status, receiver_name, 
+    user_account, receiver_tel, receiver_phone, postal_code, receiver_address, delivery_zone, 
+    delivery_type, delivery_price, pay_type, own_take_time, receiver_email, remitter, 
+    remark
+  </sql>
+  <select id="selectByExample" parameterType="com.shangma.cn.entity.OrderExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_order
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_order
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shangma.cn.entity.OrderExample">
+    delete from t_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shangma.cn.entity.Order">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_order (id, order_create_time, order_type, 
+      order_action, bussiness_type, order_status, 
+      receiver_name, user_account, receiver_tel, 
+      receiver_phone, postal_code, receiver_address, 
+      delivery_zone, delivery_type, delivery_price, 
+      pay_type, own_take_time, receiver_email, 
+      remitter, remark)
+    values (#{id,jdbcType=BIGINT}, #{orderCreateTime,jdbcType=TIMESTAMP}, #{orderType,jdbcType=VARCHAR}, 
+      #{orderAction,jdbcType=TINYINT}, #{bussinessType,jdbcType=TINYINT}, #{orderStatus,jdbcType=TINYINT}, 
+      #{receiverName,jdbcType=VARCHAR}, #{userAccount,jdbcType=VARCHAR}, #{receiverTel,jdbcType=VARCHAR}, 
+      #{receiverPhone,jdbcType=VARCHAR}, #{postalCode,jdbcType=VARCHAR}, #{receiverAddress,jdbcType=VARCHAR}, 
+      #{deliveryZone,jdbcType=VARCHAR}, #{deliveryType,jdbcType=TINYINT}, #{deliveryPrice,jdbcType=DECIMAL}, 
+      #{payType,jdbcType=TINYINT}, #{ownTakeTime,jdbcType=TIMESTAMP}, #{receiverEmail,jdbcType=VARCHAR}, 
+      #{remitter,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shangma.cn.entity.Order">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      id,
+      <if test="orderCreateTime != null">
+        order_create_time,
+      </if>
+      <if test="orderType != null">
+        order_type,
+      </if>
+      <if test="orderAction != null">
+        order_action,
+      </if>
+      <if test="bussinessType != null">
+        bussiness_type,
+      </if>
+      <if test="orderStatus != null">
+        order_status,
+      </if>
+      <if test="receiverName != null">
+        receiver_name,
+      </if>
+      <if test="userAccount != null">
+        user_account,
+      </if>
+      <if test="receiverTel != null">
+        receiver_tel,
+      </if>
+      <if test="receiverPhone != null">
+        receiver_phone,
+      </if>
+      <if test="postalCode != null">
+        postal_code,
+      </if>
+      <if test="receiverAddress != null">
+        receiver_address,
+      </if>
+      <if test="deliveryZone != null">
+        delivery_zone,
+      </if>
+      <if test="deliveryType != null">
+        delivery_type,
+      </if>
+      <if test="deliveryPrice != null">
+        delivery_price,
+      </if>
+      <if test="payType != null">
+        pay_type,
+      </if>
+      <if test="ownTakeTime != null">
+        own_take_time,
+      </if>
+      <if test="receiverEmail != null">
+        receiver_email,
+      </if>
+      <if test="remitter != null">
+        remitter,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{id,jdbcType=BIGINT},
+      <if test="orderCreateTime != null">
+        #{orderCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderType != null">
+        #{orderType,jdbcType=VARCHAR},
+      </if>
+      <if test="orderAction != null">
+        #{orderAction,jdbcType=TINYINT},
+      </if>
+      <if test="bussinessType != null">
+        #{bussinessType,jdbcType=TINYINT},
+      </if>
+      <if test="orderStatus != null">
+        #{orderStatus,jdbcType=TINYINT},
+      </if>
+      <if test="receiverName != null">
+        #{receiverName,jdbcType=VARCHAR},
+      </if>
+      <if test="userAccount != null">
+        #{userAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverTel != null">
+        #{receiverTel,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverPhone != null">
+        #{receiverPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="postalCode != null">
+        #{postalCode,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverAddress != null">
+        #{receiverAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryZone != null">
+        #{deliveryZone,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryType != null">
+        #{deliveryType,jdbcType=TINYINT},
+      </if>
+      <if test="deliveryPrice != null">
+        #{deliveryPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="payType != null">
+        #{payType,jdbcType=TINYINT},
+      </if>
+      <if test="ownTakeTime != null">
+        #{ownTakeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="receiverEmail != null">
+        #{receiverEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="remitter != null">
+        #{remitter,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shangma.cn.entity.OrderExample" resultType="java.lang.Long">
+    select count(*) from t_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_order
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.orderCreateTime != null">
+        order_create_time = #{record.orderCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.orderType != null">
+        order_type = #{record.orderType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderAction != null">
+        order_action = #{record.orderAction,jdbcType=TINYINT},
+      </if>
+      <if test="record.bussinessType != null">
+        bussiness_type = #{record.bussinessType,jdbcType=TINYINT},
+      </if>
+      <if test="record.orderStatus != null">
+        order_status = #{record.orderStatus,jdbcType=TINYINT},
+      </if>
+      <if test="record.receiverName != null">
+        receiver_name = #{record.receiverName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userAccount != null">
+        user_account = #{record.userAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiverTel != null">
+        receiver_tel = #{record.receiverTel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiverPhone != null">
+        receiver_phone = #{record.receiverPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.postalCode != null">
+        postal_code = #{record.postalCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiverAddress != null">
+        receiver_address = #{record.receiverAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deliveryZone != null">
+        delivery_zone = #{record.deliveryZone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deliveryType != null">
+        delivery_type = #{record.deliveryType,jdbcType=TINYINT},
+      </if>
+      <if test="record.deliveryPrice != null">
+        delivery_price = #{record.deliveryPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.payType != null">
+        pay_type = #{record.payType,jdbcType=TINYINT},
+      </if>
+      <if test="record.ownTakeTime != null">
+        own_take_time = #{record.ownTakeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.receiverEmail != null">
+        receiver_email = #{record.receiverEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remitter != null">
+        remitter = #{record.remitter,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_order
+    set id = #{record.id,jdbcType=BIGINT},
+      order_create_time = #{record.orderCreateTime,jdbcType=TIMESTAMP},
+      order_type = #{record.orderType,jdbcType=VARCHAR},
+      order_action = #{record.orderAction,jdbcType=TINYINT},
+      bussiness_type = #{record.bussinessType,jdbcType=TINYINT},
+      order_status = #{record.orderStatus,jdbcType=TINYINT},
+      receiver_name = #{record.receiverName,jdbcType=VARCHAR},
+      user_account = #{record.userAccount,jdbcType=VARCHAR},
+      receiver_tel = #{record.receiverTel,jdbcType=VARCHAR},
+      receiver_phone = #{record.receiverPhone,jdbcType=VARCHAR},
+      postal_code = #{record.postalCode,jdbcType=VARCHAR},
+      receiver_address = #{record.receiverAddress,jdbcType=VARCHAR},
+      delivery_zone = #{record.deliveryZone,jdbcType=VARCHAR},
+      delivery_type = #{record.deliveryType,jdbcType=TINYINT},
+      delivery_price = #{record.deliveryPrice,jdbcType=DECIMAL},
+      pay_type = #{record.payType,jdbcType=TINYINT},
+      own_take_time = #{record.ownTakeTime,jdbcType=TIMESTAMP},
+      receiver_email = #{record.receiverEmail,jdbcType=VARCHAR},
+      remitter = #{record.remitter,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shangma.cn.entity.Order">
+    update t_order
+    <set>
+      <if test="orderCreateTime != null">
+        order_create_time = #{orderCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderType != null">
+        order_type = #{orderType,jdbcType=VARCHAR},
+      </if>
+      <if test="orderAction != null">
+        order_action = #{orderAction,jdbcType=TINYINT},
+      </if>
+      <if test="bussinessType != null">
+        bussiness_type = #{bussinessType,jdbcType=TINYINT},
+      </if>
+      <if test="orderStatus != null">
+        order_status = #{orderStatus,jdbcType=TINYINT},
+      </if>
+      <if test="receiverName != null">
+        receiver_name = #{receiverName,jdbcType=VARCHAR},
+      </if>
+      <if test="userAccount != null">
+        user_account = #{userAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverTel != null">
+        receiver_tel = #{receiverTel,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverPhone != null">
+        receiver_phone = #{receiverPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="postalCode != null">
+        postal_code = #{postalCode,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverAddress != null">
+        receiver_address = #{receiverAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryZone != null">
+        delivery_zone = #{deliveryZone,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryType != null">
+        delivery_type = #{deliveryType,jdbcType=TINYINT},
+      </if>
+      <if test="deliveryPrice != null">
+        delivery_price = #{deliveryPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="payType != null">
+        pay_type = #{payType,jdbcType=TINYINT},
+      </if>
+      <if test="ownTakeTime != null">
+        own_take_time = #{ownTakeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="receiverEmail != null">
+        receiver_email = #{receiverEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="remitter != null">
+        remitter = #{remitter,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shangma.cn.entity.Order">
+    update t_order
+    set order_create_time = #{orderCreateTime,jdbcType=TIMESTAMP},
+      order_type = #{orderType,jdbcType=VARCHAR},
+      order_action = #{orderAction,jdbcType=TINYINT},
+      bussiness_type = #{bussinessType,jdbcType=TINYINT},
+      order_status = #{orderStatus,jdbcType=TINYINT},
+      receiver_name = #{receiverName,jdbcType=VARCHAR},
+      user_account = #{userAccount,jdbcType=VARCHAR},
+      receiver_tel = #{receiverTel,jdbcType=VARCHAR},
+      receiver_phone = #{receiverPhone,jdbcType=VARCHAR},
+      postal_code = #{postalCode,jdbcType=VARCHAR},
+      receiver_address = #{receiverAddress,jdbcType=VARCHAR},
+      delivery_zone = #{deliveryZone,jdbcType=VARCHAR},
+      delivery_type = #{deliveryType,jdbcType=TINYINT},
+      delivery_price = #{deliveryPrice,jdbcType=DECIMAL},
+      pay_type = #{payType,jdbcType=TINYINT},
+      own_take_time = #{ownTakeTime,jdbcType=TIMESTAMP},
+      receiver_email = #{receiverEmail,jdbcType=VARCHAR},
+      remitter = #{remitter,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
