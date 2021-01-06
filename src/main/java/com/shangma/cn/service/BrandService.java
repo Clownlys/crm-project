@@ -9,5 +9,5 @@ import com.shangma.cn.service.base.BaseService;
  * 开发时间：2021/1/4 17:37
  * 文件说明：
  */
-public interface BrandService  extends BaseService<Brand,String> {
+public interface BrandService  extends BaseService<Brand,Long> {
 }
