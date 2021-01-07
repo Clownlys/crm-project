@@ -27,6 +27,8 @@ public class OutGoodInfoController extends BaseController {
         PageHelper.startPage(currentPage, pageSize);
         PageVo<OutStore> page = outStoreService.findAll();
         return AxiosResult.success(page);
+
+
     }
 
 
