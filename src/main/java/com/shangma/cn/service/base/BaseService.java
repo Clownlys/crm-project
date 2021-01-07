@@ -29,6 +29,7 @@ public interface BaseService<T, ID> {
     int batchDeleteByIds(List<ID> ids);
 
     PageVo<T> setPage(List<T> list);
-    public BaseMapper<T, ID> getBaseMapper();
+
+    BaseMapper<T, ID> getBaseMapper();
 
 }

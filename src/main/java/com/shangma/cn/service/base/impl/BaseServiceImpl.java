@@ -3,6 +3,7 @@ package com.shangma.cn.service.base.impl;
 import com.github.pagehelper.PageInfo;
 import com.shangma.cn.mapper.base.BaseMapper;
 import com.shangma.cn.service.base.BaseService;
+import com.shangma.cn.utils.ReflectionUtils;
 import com.shangma.cn.vo.PageVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,6 +22,7 @@ public class BaseServiceImpl<T, ID> implements BaseService<T, ID> {
     private BaseMapper<T, ID> baseMapper;
 
 
+    @Override
     public BaseMapper<T, ID> getBaseMapper() {
         return baseMapper;
     }
@@ -65,6 +67,7 @@ public class BaseServiceImpl<T, ID> implements BaseService<T, ID> {
      */
     @Override
     public int addEntity(T entity) {
+        ReflectionUtils.invokeMethod(entity,"setData",null,null);
         return baseMapper.insert(entity);
     }
 
@@ -77,6 +80,7 @@ public class BaseServiceImpl<T, ID> implements BaseService<T, ID> {
      */
     @Override
     public int updateEntity(T entity) {
+        ReflectionUtils.invokeMethod(entity,"setData",null,null);
         return baseMapper.updateByPrimaryKey(entity);
     }
 

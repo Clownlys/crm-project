@@ -2,6 +2,7 @@ package com.shangma.cn.entity.base;
 
 import lombok.Data;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -14,12 +15,21 @@ import java.util.Date;
 public class BaseEntity<ID> {
     private ID id;
 
-    private Date addTime;
+    private LocalDateTime addTime;
 
     private Long creatorId;
 
-    private Date updateTime;
+    private LocalDateTime updateTime;
 
     private Long updateId;
+
+    public void setData(){
+        if(id==null){
+            this.addTime=LocalDateTime.now();
+            this.creatorId=1L;
+        }
+        this.updateTime=LocalDateTime.now();
+        this.updateId=2L;
+    }
 
 }
