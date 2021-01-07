@@ -225,66 +225,6 @@ public class OutStoreExample {
             return (Criteria) this;
         }
 
-        public Criteria andOutGoodInfoIdIsNull() {
-            addCriterion("out_good_info_id is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andOutGoodInfoIdIsNotNull() {
-            addCriterion("out_good_info_id is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andOutGoodInfoIdEqualTo(Long value) {
-            addCriterion("out_good_info_id =", value, "outGoodInfoId");
-            return (Criteria) this;
-        }
-
-        public Criteria andOutGoodInfoIdNotEqualTo(Long value) {
-            addCriterion("out_good_info_id <>", value, "outGoodInfoId");
-            return (Criteria) this;
-        }
-
-        public Criteria andOutGoodInfoIdGreaterThan(Long value) {
-            addCriterion("out_good_info_id >", value, "outGoodInfoId");
-            return (Criteria) this;
-        }
-
-        public Criteria andOutGoodInfoIdGreaterThanOrEqualTo(Long value) {
-            addCriterion("out_good_info_id >=", value, "outGoodInfoId");
-            return (Criteria) this;
-        }
-
-        public Criteria andOutGoodInfoIdLessThan(Long value) {
-            addCriterion("out_good_info_id <", value, "outGoodInfoId");
-            return (Criteria) this;
-        }
-
-        public Criteria andOutGoodInfoIdLessThanOrEqualTo(Long value) {
-            addCriterion("out_good_info_id <=", value, "outGoodInfoId");
-            return (Criteria) this;
-        }
-
-        public Criteria andOutGoodInfoIdIn(List<Long> values) {
-            addCriterion("out_good_info_id in", values, "outGoodInfoId");
-            return (Criteria) this;
-        }
-
-        public Criteria andOutGoodInfoIdNotIn(List<Long> values) {
-            addCriterion("out_good_info_id not in", values, "outGoodInfoId");
-            return (Criteria) this;
-        }
-
-        public Criteria andOutGoodInfoIdBetween(Long value1, Long value2) {
-            addCriterion("out_good_info_id between", value1, value2, "outGoodInfoId");
-            return (Criteria) this;
-        }
-
-        public Criteria andOutGoodInfoIdNotBetween(Long value1, Long value2) {
-            addCriterion("out_good_info_id not between", value1, value2, "outGoodInfoId");
-            return (Criteria) this;
-        }
-
         public Criteria andReturnFactoryReasonIsNull() {
             addCriterion("return_factory_reason is null");
             return (Criteria) this;
@@ -356,72 +296,72 @@ public class OutStoreExample {
         }
 
         public Criteria andReturnFactoryLocationIsNull() {
-            addCriterion("\"return_factory_ location\" is null");
+            addCriterion("return_factory_location is null");
             return (Criteria) this;
         }
 
         public Criteria andReturnFactoryLocationIsNotNull() {
-            addCriterion("\"return_factory_ location\" is not null");
+            addCriterion("return_factory_location is not null");
             return (Criteria) this;
         }
 
         public Criteria andReturnFactoryLocationEqualTo(String value) {
-            addCriterion("\"return_factory_ location\" =", value, "returnFactoryLocation");
+            addCriterion("return_factory_location =", value, "returnFactoryLocation");
             return (Criteria) this;
         }
 
         public Criteria andReturnFactoryLocationNotEqualTo(String value) {
-            addCriterion("\"return_factory_ location\" <>", value, "returnFactoryLocation");
+            addCriterion("return_factory_location <>", value, "returnFactoryLocation");
             return (Criteria) this;
         }
 
         public Criteria andReturnFactoryLocationGreaterThan(String value) {
-            addCriterion("\"return_factory_ location\" >", value, "returnFactoryLocation");
+            addCriterion("return_factory_location >", value, "returnFactoryLocation");
             return (Criteria) this;
         }
 
         public Criteria andReturnFactoryLocationGreaterThanOrEqualTo(String value) {
-            addCriterion("\"return_factory_ location\" >=", value, "returnFactoryLocation");
+            addCriterion("return_factory_location >=", value, "returnFactoryLocation");
             return (Criteria) this;
         }
 
         public Criteria andReturnFactoryLocationLessThan(String value) {
-            addCriterion("\"return_factory_ location\" <", value, "returnFactoryLocation");
+            addCriterion("return_factory_location <", value, "returnFactoryLocation");
             return (Criteria) this;
         }
 
         public Criteria andReturnFactoryLocationLessThanOrEqualTo(String value) {
-            addCriterion("\"return_factory_ location\" <=", value, "returnFactoryLocation");
+            addCriterion("return_factory_location <=", value, "returnFactoryLocation");
             return (Criteria) this;
         }
 
         public Criteria andReturnFactoryLocationLike(String value) {
-            addCriterion("\"return_factory_ location\" like", value, "returnFactoryLocation");
+            addCriterion("return_factory_location like", value, "returnFactoryLocation");
             return (Criteria) this;
         }
 
         public Criteria andReturnFactoryLocationNotLike(String value) {
-            addCriterion("\"return_factory_ location\" not like", value, "returnFactoryLocation");
+            addCriterion("return_factory_location not like", value, "returnFactoryLocation");
             return (Criteria) this;
         }
 
         public Criteria andReturnFactoryLocationIn(List<String> values) {
-            addCriterion("\"return_factory_ location\" in", values, "returnFactoryLocation");
+            addCriterion("return_factory_location in", values, "returnFactoryLocation");
             return (Criteria) this;
         }
 
         public Criteria andReturnFactoryLocationNotIn(List<String> values) {
-            addCriterion("\"return_factory_ location\" not in", values, "returnFactoryLocation");
+            addCriterion("return_factory_location not in", values, "returnFactoryLocation");
             return (Criteria) this;
         }
 
         public Criteria andReturnFactoryLocationBetween(String value1, String value2) {
-            addCriterion("\"return_factory_ location\" between", value1, value2, "returnFactoryLocation");
+            addCriterion("return_factory_location between", value1, value2, "returnFactoryLocation");
             return (Criteria) this;
         }
 
         public Criteria andReturnFactoryLocationNotBetween(String value1, String value2) {
-            addCriterion("\"return_factory_ location\" not between", value1, value2, "returnFactoryLocation");
+            addCriterion("return_factory_location not between", value1, value2, "returnFactoryLocation");
             return (Criteria) this;
         }
 

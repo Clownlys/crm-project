@@ -4,8 +4,7 @@
   <resultMap id="BaseResultMap" type="com.shangma.cn.entity.InStore">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="return_in_store_flag" jdbcType="TINYINT" property="returnInStoreFlag" />
-    <result column="in_good_info_id" jdbcType="BIGINT" property="inGoodInfoId" />
-    <result column="return_factory_ location" jdbcType="VARCHAR" property="returnFactoryLocation" />
+    <result column="return_factory_location" jdbcType="VARCHAR" property="returnFactoryLocation" />
     <result column="in_store_note" jdbcType="VARCHAR" property="inStoreNote" />
     <result column="document_maker" jdbcType="VARCHAR" property="documentMaker" />
     <result column="making_time" jdbcType="TIMESTAMP" property="makingTime" />
@@ -77,9 +76,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, return_in_store_flag, in_good_info_id, "return_factory_ location", in_store_note, 
-    document_maker, making_time, approver, approval_opinion, approval_time, approval_status, 
-    add_time, creator_id, update_time, update_id
+    id, return_in_store_flag, return_factory_location, in_store_note, document_maker, 
+    making_time, approver, approval_opinion, approval_time, approval_status, add_time, 
+    creator_id, update_time, update_id
   </sql>
   <select id="selectByExample" parameterType="com.shangma.cn.entity.InStoreExample" resultMap="BaseResultMap">
     select
@@ -112,18 +111,16 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.shangma.cn.entity.InStore">
-    insert into t_in_store (id, return_in_store_flag, in_good_info_id, 
-      "return_factory_ location", in_store_note, document_maker, 
-      making_time, approver, approval_opinion, 
-      approval_time, approval_status, add_time, 
-      creator_id, update_time, update_id
-      )
-    values (#{id,jdbcType=BIGINT}, #{returnInStoreFlag,jdbcType=TINYINT}, #{inGoodInfoId,jdbcType=BIGINT}, 
-      #{returnFactoryLocation,jdbcType=VARCHAR}, #{inStoreNote,jdbcType=VARCHAR}, #{documentMaker,jdbcType=VARCHAR}, 
-      #{makingTime,jdbcType=TIMESTAMP}, #{approver,jdbcType=VARCHAR}, #{approvalOpinion,jdbcType=VARCHAR}, 
-      #{approvalTime,jdbcType=TIMESTAMP}, #{approvalStatus,jdbcType=TINYINT}, #{addTime,jdbcType=TIMESTAMP}, 
-      #{creatorId,jdbcType=BIGINT}, #{updateTime,jdbcType=TIMESTAMP}, #{updateId,jdbcType=BIGINT}
-      )
+    insert into t_in_store (id, return_in_store_flag, return_factory_location, 
+      in_store_note, document_maker, making_time, 
+      approver, approval_opinion, approval_time, 
+      approval_status, add_time, creator_id, 
+      update_time, update_id)
+    values (#{id,jdbcType=BIGINT}, #{returnInStoreFlag,jdbcType=TINYINT}, #{returnFactoryLocation,jdbcType=VARCHAR}, 
+      #{inStoreNote,jdbcType=VARCHAR}, #{documentMaker,jdbcType=VARCHAR}, #{makingTime,jdbcType=TIMESTAMP}, 
+      #{approver,jdbcType=VARCHAR}, #{approvalOpinion,jdbcType=VARCHAR}, #{approvalTime,jdbcType=TIMESTAMP}, 
+      #{approvalStatus,jdbcType=TINYINT}, #{addTime,jdbcType=TIMESTAMP}, #{creatorId,jdbcType=BIGINT}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{updateId,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="com.shangma.cn.entity.InStore">
     insert into t_in_store
@@ -134,11 +131,8 @@
       <if test="returnInStoreFlag != null">
         return_in_store_flag,
       </if>
-      <if test="inGoodInfoId != null">
-        in_good_info_id,
-      </if>
       <if test="returnFactoryLocation != null">
-        "return_factory_ location",
+        return_factory_location,
       </if>
       <if test="inStoreNote != null">
         in_store_note,
@@ -180,9 +174,6 @@
       </if>
       <if test="returnInStoreFlag != null">
         #{returnInStoreFlag,jdbcType=TINYINT},
-      </if>
-      <if test="inGoodInfoId != null">
-        #{inGoodInfoId,jdbcType=BIGINT},
       </if>
       <if test="returnFactoryLocation != null">
         #{returnFactoryLocation,jdbcType=VARCHAR},
@@ -237,11 +228,8 @@
       <if test="record.returnInStoreFlag != null">
         return_in_store_flag = #{record.returnInStoreFlag,jdbcType=TINYINT},
       </if>
-      <if test="record.inGoodInfoId != null">
-        in_good_info_id = #{record.inGoodInfoId,jdbcType=BIGINT},
-      </if>
       <if test="record.returnFactoryLocation != null">
-        "return_factory_ location" = #{record.returnFactoryLocation,jdbcType=VARCHAR},
+        return_factory_location = #{record.returnFactoryLocation,jdbcType=VARCHAR},
       </if>
       <if test="record.inStoreNote != null">
         in_store_note = #{record.inStoreNote,jdbcType=VARCHAR},
@@ -285,8 +273,7 @@
     update t_in_store
     set id = #{record.id,jdbcType=BIGINT},
       return_in_store_flag = #{record.returnInStoreFlag,jdbcType=TINYINT},
-      in_good_info_id = #{record.inGoodInfoId,jdbcType=BIGINT},
-      "return_factory_ location" = #{record.returnFactoryLocation,jdbcType=VARCHAR},
+      return_factory_location = #{record.returnFactoryLocation,jdbcType=VARCHAR},
       in_store_note = #{record.inStoreNote,jdbcType=VARCHAR},
       document_maker = #{record.documentMaker,jdbcType=VARCHAR},
       making_time = #{record.makingTime,jdbcType=TIMESTAMP},
@@ -308,11 +295,8 @@
       <if test="returnInStoreFlag != null">
         return_in_store_flag = #{returnInStoreFlag,jdbcType=TINYINT},
       </if>
-      <if test="inGoodInfoId != null">
-        in_good_info_id = #{inGoodInfoId,jdbcType=BIGINT},
-      </if>
       <if test="returnFactoryLocation != null">
-        "return_factory_ location" = #{returnFactoryLocation,jdbcType=VARCHAR},
+        return_factory_location = #{returnFactoryLocation,jdbcType=VARCHAR},
       </if>
       <if test="inStoreNote != null">
         in_store_note = #{inStoreNote,jdbcType=VARCHAR},
@@ -353,8 +337,7 @@
   <update id="updateByPrimaryKey" parameterType="com.shangma.cn.entity.InStore">
     update t_in_store
     set return_in_store_flag = #{returnInStoreFlag,jdbcType=TINYINT},
-      in_good_info_id = #{inGoodInfoId,jdbcType=BIGINT},
-      "return_factory_ location" = #{returnFactoryLocation,jdbcType=VARCHAR},
+      return_factory_location = #{returnFactoryLocation,jdbcType=VARCHAR},
       in_store_note = #{inStoreNote,jdbcType=VARCHAR},
       document_maker = #{documentMaker,jdbcType=VARCHAR},
       making_time = #{makingTime,jdbcType=TIMESTAMP},

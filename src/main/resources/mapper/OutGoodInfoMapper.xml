@@ -3,7 +3,7 @@
 <mapper namespace="com.shangma.cn.mapper.OutGoodInfoMapper">
   <resultMap id="BaseResultMap" type="com.shangma.cn.entity.OutGoodInfo">
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="good_id" jdbcType="BIGINT" property="goodId" />
+    <result column="out_store_id" jdbcType="BIGINT" property="outStoreId" />
     <result column="good_brand" jdbcType="VARCHAR" property="goodBrand" />
     <result column="good_name" jdbcType="VARCHAR" property="goodName" />
     <result column="good_model" jdbcType="VARCHAR" property="goodModel" />
@@ -76,7 +76,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, good_id, good_brand, good_name, good_model, good_color, good_supplier, good_trace_message, 
+    id, out_store_id, good_brand, good_name, good_model, good_color, good_supplier, good_trace_message, 
     return_factory_config, good_apparent_status, add_time, creator_id, update_time, update_id
   </sql>
   <select id="selectByExample" parameterType="com.shangma.cn.entity.OutGoodInfoExample" resultMap="BaseResultMap">
@@ -110,12 +110,12 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.shangma.cn.entity.OutGoodInfo">
-    insert into t_out_good_info (id, good_id, good_brand, 
+    insert into t_out_good_info (id, out_store_id, good_brand, 
       good_name, good_model, good_color, 
       good_supplier, good_trace_message, return_factory_config, 
       good_apparent_status, add_time, creator_id, 
       update_time, update_id)
-    values (#{id,jdbcType=BIGINT}, #{goodId,jdbcType=BIGINT}, #{goodBrand,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=BIGINT}, #{outStoreId,jdbcType=BIGINT}, #{goodBrand,jdbcType=VARCHAR}, 
       #{goodName,jdbcType=VARCHAR}, #{goodModel,jdbcType=VARCHAR}, #{goodColor,jdbcType=VARCHAR}, 
       #{goodSupplier,jdbcType=VARCHAR}, #{goodTraceMessage,jdbcType=VARCHAR}, #{returnFactoryConfig,jdbcType=VARCHAR}, 
       #{goodApparentStatus,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP}, #{creatorId,jdbcType=BIGINT}, 
@@ -127,8 +127,8 @@
       <if test="id != null">
         id,
       </if>
-      <if test="goodId != null">
-        good_id,
+      <if test="outStoreId != null">
+        out_store_id,
       </if>
       <if test="goodBrand != null">
         good_brand,
@@ -171,8 +171,8 @@
       <if test="id != null">
         #{id,jdbcType=BIGINT},
       </if>
-      <if test="goodId != null">
-        #{goodId,jdbcType=BIGINT},
+      <if test="outStoreId != null">
+        #{outStoreId,jdbcType=BIGINT},
       </if>
       <if test="goodBrand != null">
         #{goodBrand,jdbcType=VARCHAR},
@@ -224,8 +224,8 @@
       <if test="record.id != null">
         id = #{record.id,jdbcType=BIGINT},
       </if>
-      <if test="record.goodId != null">
-        good_id = #{record.goodId,jdbcType=BIGINT},
+      <if test="record.outStoreId != null">
+        out_store_id = #{record.outStoreId,jdbcType=BIGINT},
       </if>
       <if test="record.goodBrand != null">
         good_brand = #{record.goodBrand,jdbcType=VARCHAR},
@@ -271,7 +271,7 @@
   <update id="updateByExample" parameterType="map">
     update t_out_good_info
     set id = #{record.id,jdbcType=BIGINT},
-      good_id = #{record.goodId,jdbcType=BIGINT},
+      out_store_id = #{record.outStoreId,jdbcType=BIGINT},
       good_brand = #{record.goodBrand,jdbcType=VARCHAR},
       good_name = #{record.goodName,jdbcType=VARCHAR},
       good_model = #{record.goodModel,jdbcType=VARCHAR},
@@ -291,8 +291,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.shangma.cn.entity.OutGoodInfo">
     update t_out_good_info
     <set>
-      <if test="goodId != null">
-        good_id = #{goodId,jdbcType=BIGINT},
+      <if test="outStoreId != null">
+        out_store_id = #{outStoreId,jdbcType=BIGINT},
       </if>
       <if test="goodBrand != null">
         good_brand = #{goodBrand,jdbcType=VARCHAR},
@@ -335,7 +335,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.shangma.cn.entity.OutGoodInfo">
     update t_out_good_info
-    set good_id = #{goodId,jdbcType=BIGINT},
+    set out_store_id = #{outStoreId,jdbcType=BIGINT},
       good_brand = #{goodBrand,jdbcType=VARCHAR},
       good_name = #{goodName,jdbcType=VARCHAR},
       good_model = #{goodModel,jdbcType=VARCHAR},

@@ -3,9 +3,9 @@ package com.shangma.cn.controller;
 import com.github.pagehelper.PageHelper;
 import com.shangma.cn.common.http.AxiosResult;
 import com.shangma.cn.controller.base.BaseController;
+import com.shangma.cn.dto.OutStoreSearchPageDto;
 import com.shangma.cn.entity.OutStore;
 import com.shangma.cn.service.OutStoreService;
-import com.shangma.cn.service.base.BaseService;
 import com.shangma.cn.vo.PageVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -31,6 +31,16 @@ public class OutStoreController extends BaseController{
         PageVo<OutStore> page = outStoreService.findAll();
         return AxiosResult.success(page);
     }
+
+    @PostMapping("findPageByExample")
+    public AxiosResult<PageVo<OutStore>> findPageByExample(@RequestBody OutStoreSearchPageDto outStoreSearchPageDto,
+            @RequestParam(defaultValue = "1") int currentPage
+            , @RequestParam(defaultValue = "5") int pageSize) {
+        PageHelper.startPage(currentPage, pageSize);
+        PageVo<OutStore> page = outStoreService.findPageByExample(outStoreSearchPageDto);
+        return AxiosResult.success(page);
+    }
+
 
     @GetMapping("{id}")
     public AxiosResult<OutStore> findById(@PathVariable Long id) {

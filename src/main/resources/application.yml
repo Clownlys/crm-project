@@ -2,7 +2,7 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.11.235:3306/crm_db?serverTimezone=UTC
+    url: jdbc:mysql://192.168.11.235:3306/crm_db?characterEncoding=utf-8&serverTimezone=UTC
     username: root
     password: 2727981781
 

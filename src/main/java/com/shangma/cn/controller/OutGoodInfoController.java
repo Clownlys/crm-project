@@ -29,10 +29,7 @@ public class OutGoodInfoController extends BaseController {
         return AxiosResult.success(page);
     }
 
-    @GetMapping("{id}")
-    public AxiosResult<OutStore> findById(@PathVariable Long id) {
-        return AxiosResult.success(outStoreService.findById(id));
-    }
+
 
     @PostMapping
     public AxiosResult<Void> addEntity(@RequestBody OutStore entity) {
@@ -47,5 +44,10 @@ public class OutGoodInfoController extends BaseController {
     @DeleteMapping("{ids}")
     public AxiosResult<Void> deleteById(@PathVariable List<Long> ids) {
         return toAxios(outStoreService.batchDeleteByIds(ids));
+    }
+
+    @GetMapping("{outStoreId}")
+    public AxiosResult<OutStore> findById(@PathVariable Long outStoreId) {
+        return AxiosResult.success(outStoreService.findById(outStoreId));
     }
 }

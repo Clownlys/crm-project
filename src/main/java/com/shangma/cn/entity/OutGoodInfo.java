@@ -1,7 +1,10 @@
 package com.shangma.cn.entity;
 
+import lombok.Data;
+
 import java.util.Date;
 
+@Data
 public class OutGoodInfo {
     private Long id;
 

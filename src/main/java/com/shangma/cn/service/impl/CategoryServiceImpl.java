@@ -1,16 +1,13 @@
 package com.shangma.cn.service.impl;
 
 import com.shangma.cn.entity.Category;
-import com.shangma.cn.entity.Supplier;
 import com.shangma.cn.mapper.CategoryMapper;
 import com.shangma.cn.service.CategoryService;
-import com.shangma.cn.service.SupplierService;
 import com.shangma.cn.service.base.impl.BaseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 

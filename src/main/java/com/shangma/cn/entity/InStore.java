@@ -1,6 +1,5 @@
 package com.shangma.cn.entity;
 
-import javafx.beans.NamedArg;
 import lombok.Data;
 
 import java.util.Date;
@@ -10,8 +9,6 @@ public class InStore {
     private Long id;
 
     private Byte returnInStoreFlag;
-
-    private Long inGoodInfoId;
 
     private String returnFactoryLocation;
 

@@ -4,9 +4,8 @@
   <resultMap id="BaseResultMap" type="com.shangma.cn.entity.OutStore">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="return_out_store_flag" jdbcType="TINYINT" property="returnOutStoreFlag" />
-    <result column="out_good_info_id" jdbcType="BIGINT" property="outGoodInfoId" />
     <result column="return_factory_reason" jdbcType="VARCHAR" property="returnFactoryReason" />
-    <result column="return_factory_ location" jdbcType="VARCHAR" property="returnFactoryLocation" />
+    <result column="return_factory_location" jdbcType="VARCHAR" property="returnFactoryLocation" />
     <result column="document_maker" jdbcType="VARCHAR" property="documentMaker" />
     <result column="making_time" jdbcType="TIMESTAMP" property="makingTime" />
     <result column="approver" jdbcType="VARCHAR" property="approver" />
@@ -77,9 +76,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, return_out_store_flag, out_good_info_id, return_factory_reason, "return_factory_ location", 
-    document_maker, making_time, approver, approval_opinion, approval_time, approval_status, 
-    add_time, creator_id, update_time, update_id
+    id, return_out_store_flag, return_factory_reason, return_factory_location, document_maker, 
+    making_time, approver, approval_opinion, approval_time, approval_status, add_time, 
+    creator_id, update_time, update_id
   </sql>
   <select id="selectByExample" parameterType="com.shangma.cn.entity.OutStoreExample" resultMap="BaseResultMap">
     select
@@ -112,18 +111,16 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.shangma.cn.entity.OutStore">
-    insert into t_out_store (id, return_out_store_flag, out_good_info_id, 
-      return_factory_reason, "return_factory_ location", 
-      document_maker, making_time, approver, 
-      approval_opinion, approval_time, approval_status, 
-      add_time, creator_id, update_time, 
-      update_id)
-    values (#{id,jdbcType=BIGINT}, #{returnOutStoreFlag,jdbcType=TINYINT}, #{outGoodInfoId,jdbcType=BIGINT}, 
-      #{returnFactoryReason,jdbcType=VARCHAR}, #{returnFactoryLocation,jdbcType=VARCHAR}, 
-      #{documentMaker,jdbcType=VARCHAR}, #{makingTime,jdbcType=TIMESTAMP}, #{approver,jdbcType=VARCHAR}, 
-      #{approvalOpinion,jdbcType=VARCHAR}, #{approvalTime,jdbcType=TIMESTAMP}, #{approvalStatus,jdbcType=TINYINT}, 
-      #{addTime,jdbcType=TIMESTAMP}, #{creatorId,jdbcType=BIGINT}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{updateId,jdbcType=BIGINT})
+    insert into t_out_store (id, return_out_store_flag, return_factory_reason, 
+      return_factory_location, document_maker, making_time, 
+      approver, approval_opinion, approval_time, 
+      approval_status, add_time, creator_id, 
+      update_time, update_id)
+    values (#{id,jdbcType=BIGINT}, #{returnOutStoreFlag,jdbcType=TINYINT}, #{returnFactoryReason,jdbcType=VARCHAR}, 
+      #{returnFactoryLocation,jdbcType=VARCHAR}, #{documentMaker,jdbcType=VARCHAR}, #{makingTime,jdbcType=TIMESTAMP}, 
+      #{approver,jdbcType=VARCHAR}, #{approvalOpinion,jdbcType=VARCHAR}, #{approvalTime,jdbcType=TIMESTAMP}, 
+      #{approvalStatus,jdbcType=TINYINT}, #{addTime,jdbcType=TIMESTAMP}, #{creatorId,jdbcType=BIGINT}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{updateId,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="com.shangma.cn.entity.OutStore">
     insert into t_out_store
@@ -134,14 +131,11 @@
       <if test="returnOutStoreFlag != null">
         return_out_store_flag,
       </if>
-      <if test="outGoodInfoId != null">
-        out_good_info_id,
-      </if>
       <if test="returnFactoryReason != null">
         return_factory_reason,
       </if>
       <if test="returnFactoryLocation != null">
-        "return_factory_ location",
+        return_factory_location,
       </if>
       <if test="documentMaker != null">
         document_maker,
@@ -180,9 +174,6 @@
       </if>
       <if test="returnOutStoreFlag != null">
         #{returnOutStoreFlag,jdbcType=TINYINT},
-      </if>
-      <if test="outGoodInfoId != null">
-        #{outGoodInfoId,jdbcType=BIGINT},
       </if>
       <if test="returnFactoryReason != null">
         #{returnFactoryReason,jdbcType=VARCHAR},
@@ -237,14 +228,11 @@
       <if test="record.returnOutStoreFlag != null">
         return_out_store_flag = #{record.returnOutStoreFlag,jdbcType=TINYINT},
       </if>
-      <if test="record.outGoodInfoId != null">
-        out_good_info_id = #{record.outGoodInfoId,jdbcType=BIGINT},
-      </if>
       <if test="record.returnFactoryReason != null">
         return_factory_reason = #{record.returnFactoryReason,jdbcType=VARCHAR},
       </if>
       <if test="record.returnFactoryLocation != null">
-        "return_factory_ location" = #{record.returnFactoryLocation,jdbcType=VARCHAR},
+        return_factory_location = #{record.returnFactoryLocation,jdbcType=VARCHAR},
       </if>
       <if test="record.documentMaker != null">
         document_maker = #{record.documentMaker,jdbcType=VARCHAR},
@@ -285,9 +273,8 @@
     update t_out_store
     set id = #{record.id,jdbcType=BIGINT},
       return_out_store_flag = #{record.returnOutStoreFlag,jdbcType=TINYINT},
-      out_good_info_id = #{record.outGoodInfoId,jdbcType=BIGINT},
       return_factory_reason = #{record.returnFactoryReason,jdbcType=VARCHAR},
-      "return_factory_ location" = #{record.returnFactoryLocation,jdbcType=VARCHAR},
+      return_factory_location = #{record.returnFactoryLocation,jdbcType=VARCHAR},
       document_maker = #{record.documentMaker,jdbcType=VARCHAR},
       making_time = #{record.makingTime,jdbcType=TIMESTAMP},
       approver = #{record.approver,jdbcType=VARCHAR},
@@ -308,14 +295,11 @@
       <if test="returnOutStoreFlag != null">
         return_out_store_flag = #{returnOutStoreFlag,jdbcType=TINYINT},
       </if>
-      <if test="outGoodInfoId != null">
-        out_good_info_id = #{outGoodInfoId,jdbcType=BIGINT},
-      </if>
       <if test="returnFactoryReason != null">
         return_factory_reason = #{returnFactoryReason,jdbcType=VARCHAR},
       </if>
       <if test="returnFactoryLocation != null">
-        "return_factory_ location" = #{returnFactoryLocation,jdbcType=VARCHAR},
+        return_factory_location = #{returnFactoryLocation,jdbcType=VARCHAR},
       </if>
       <if test="documentMaker != null">
         document_maker = #{documentMaker,jdbcType=VARCHAR},
@@ -353,9 +337,8 @@
   <update id="updateByPrimaryKey" parameterType="com.shangma.cn.entity.OutStore">
     update t_out_store
     set return_out_store_flag = #{returnOutStoreFlag,jdbcType=TINYINT},
-      out_good_info_id = #{outGoodInfoId,jdbcType=BIGINT},
       return_factory_reason = #{returnFactoryReason,jdbcType=VARCHAR},
-      "return_factory_ location" = #{returnFactoryLocation,jdbcType=VARCHAR},
+      return_factory_location = #{returnFactoryLocation,jdbcType=VARCHAR},
       document_maker = #{documentMaker,jdbcType=VARCHAR},
       making_time = #{makingTime,jdbcType=TIMESTAMP},
       approver = #{approver,jdbcType=VARCHAR},
