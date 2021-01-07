@@ -1,15 +1,18 @@
 package com.shangma.cn.service;
 
+
 import com.shangma.cn.entity.Category;
+import com.shangma.cn.entity.Supplier;
 import com.shangma.cn.service.base.BaseService;
+import com.shangma.cn.vo.PageVo;
 
 import java.util.List;
 
 /**
- * @author:Mei
- * @create:2021-01-07 10:28
+ * @author JAVASM
  */
 public interface CategoryService extends BaseService<Category,Long> {
+    List<Category> getTreeData(String categoryName);
 
-    List<Category> getTreeData();
+    PageVo<Category> searchPage(String categoryName);
 }

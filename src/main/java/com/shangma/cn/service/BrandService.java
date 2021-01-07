@@ -2,6 +2,7 @@ package com.shangma.cn.service;
 
 import com.shangma.cn.entity.Brand;
 import com.shangma.cn.service.base.BaseService;
+import com.shangma.cn.vo.PageVo;
 
 /**
  * 开发者：辉哥
@@ -10,4 +11,5 @@ import com.shangma.cn.service.base.BaseService;
  * 文件说明：
  */
 public interface BrandService  extends BaseService<Brand,Long> {
+    PageVo<Brand> searchPage(String brandName);
 }
