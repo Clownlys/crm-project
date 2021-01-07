@@ -2,10 +2,20 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.11.235:3306/crm_db?serverTimezone=UTC
+    url: jdbc:mysql://192.168.11.235:3306/crm_db?characterEncoding=utf8&serverTimezone=UTC
     username: root
     password: 2727981781
 
+logging:
+  file:
+    name: E:\\user.log
+  pattern:
+    console: '%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%5p) %clr(---){faint} %clr(%-80.80logger{79}){cyan} %clr(:){faint} %m%n'
+  level:
+    com:
+      shangma:
+        cn:
+          mapper: debug
 mybatis:
   mapper-locations: classpath:mapper/*.xml,classpath:mapper/orderassets/*.xml
 server:

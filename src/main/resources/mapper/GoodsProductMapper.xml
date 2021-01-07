@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.shangma.cn.mapper.BrandMapper">
-  <resultMap id="BaseResultMap" type="com.shangma.cn.entity.Brand">
+<mapper namespace="com.shangma.cn.mapper.GoodsProductMapper">
+  <resultMap id="BaseResultMap" type="com.shangma.cn.entity.GoodsProduct">
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="brand_name" jdbcType="VARCHAR" property="brandName" />
-    <result column="brand_site" jdbcType="VARCHAR" property="brandSite" />
-    <result column="brand_desc" jdbcType="VARCHAR" property="brandDesc" />
-    <result column="brand_logo" jdbcType="VARCHAR" property="brandLogo" />
+    <result column="prod_code" jdbcType="VARCHAR" property="prodCode" />
+    <result column="prod_name" jdbcType="VARCHAR" property="prodName" />
+    <result column="prod_type" jdbcType="BIGINT" property="prodType" />
+    <result column="prod_brand" jdbcType="BIGINT" property="prodBrand" />
+    <result column="prod_model" jdbcType="VARCHAR" property="prodModel" />
+    <result column="purchasing_mode" jdbcType="VARCHAR" property="purchasingMode" />
+    <result column="is_shop_goods" jdbcType="BIT" property="isShopGoods" />
+    <result column="is_standby" jdbcType="BIT" property="isStandby" />
     <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
     <result column="creator_id" jdbcType="BIGINT" property="creatorId" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
@@ -71,16 +75,16 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, brand_name, brand_site, brand_desc, brand_logo, add_time, creator_id, update_time, 
-    update_id
+    id, prod_code, prod_name, prod_type, prod_brand, prod_model, purchasing_mode, is_shop_goods, 
+    is_standby, add_time, creator_id, update_time, update_id
   </sql>
-  <select id="selectByExample" parameterType="com.shangma.cn.entity.BrandExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.shangma.cn.entity.GoodsProductExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from t_brand
+    from t_goods_product
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -91,46 +95,60 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from t_brand
+    from t_goods_product
     where id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from t_brand
+    delete from t_goods_product
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.shangma.cn.entity.BrandExample">
-    delete from t_brand
+  <delete id="deleteByExample" parameterType="com.shangma.cn.entity.GoodsProductExample">
+    delete from t_goods_product
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.shangma.cn.entity.Brand">
-    insert into t_brand (id, brand_name, brand_site, 
-      brand_desc, brand_logo, add_time, 
-      creator_id, update_time, update_id
-      )
-    values (#{id,jdbcType=BIGINT}, #{brandName,jdbcType=VARCHAR}, #{brandSite,jdbcType=VARCHAR}, 
-      #{brandDesc,jdbcType=VARCHAR}, #{brandLogo,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP}, 
-      #{creatorId,jdbcType=BIGINT}, #{updateTime,jdbcType=TIMESTAMP}, #{updateId,jdbcType=BIGINT}
-      )
+  <insert id="insert" parameterType="com.shangma.cn.entity.GoodsProduct">
+    insert into t_goods_product (id, prod_code, prod_name, 
+      prod_type, prod_brand, prod_model, 
+      purchasing_mode, is_shop_goods, is_standby, 
+      add_time, creator_id, update_time, 
+      update_id)
+    values (#{id,jdbcType=BIGINT}, #{prodCode,jdbcType=VARCHAR}, #{prodName,jdbcType=VARCHAR}, 
+      #{prodType,jdbcType=BIGINT}, #{prodBrand,jdbcType=BIGINT}, #{prodModel,jdbcType=VARCHAR}, 
+      #{purchasingMode,jdbcType=VARCHAR}, #{isShopGoods,jdbcType=BIT}, #{isStandby,jdbcType=BIT}, 
+      #{addTime,jdbcType=TIMESTAMP}, #{creatorId,jdbcType=BIGINT}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updateId,jdbcType=BIGINT})
   </insert>
-  <insert id="insertSelective" parameterType="com.shangma.cn.entity.Brand">
-    insert into t_brand
+  <insert id="insertSelective" parameterType="com.shangma.cn.entity.GoodsProduct">
+    insert into t_goods_product
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
       </if>
-      <if test="brandName != null">
-        brand_name,
+      <if test="prodCode != null">
+        prod_code,
       </if>
-      <if test="brandSite != null">
-        brand_site,
+      <if test="prodName != null">
+        prod_name,
       </if>
-      <if test="brandDesc != null">
-        brand_desc,
+      <if test="prodType != null">
+        prod_type,
       </if>
-      <if test="brandLogo != null">
-        brand_logo,
+      <if test="prodBrand != null">
+        prod_brand,
+      </if>
+      <if test="prodModel != null">
+        prod_model,
+      </if>
+      <if test="purchasingMode != null">
+        purchasing_mode,
+      </if>
+      <if test="isShopGoods != null">
+        is_shop_goods,
+      </if>
+      <if test="isStandby != null">
+        is_standby,
       </if>
       <if test="addTime != null">
         add_time,
@@ -149,17 +167,29 @@
       <if test="id != null">
         #{id,jdbcType=BIGINT},
       </if>
-      <if test="brandName != null">
-        #{brandName,jdbcType=VARCHAR},
+      <if test="prodCode != null">
+        #{prodCode,jdbcType=VARCHAR},
       </if>
-      <if test="brandSite != null">
-        #{brandSite,jdbcType=VARCHAR},
+      <if test="prodName != null">
+        #{prodName,jdbcType=VARCHAR},
       </if>
-      <if test="brandDesc != null">
-        #{brandDesc,jdbcType=VARCHAR},
+      <if test="prodType != null">
+        #{prodType,jdbcType=BIGINT},
       </if>
-      <if test="brandLogo != null">
-        #{brandLogo,jdbcType=VARCHAR},
+      <if test="prodBrand != null">
+        #{prodBrand,jdbcType=BIGINT},
+      </if>
+      <if test="prodModel != null">
+        #{prodModel,jdbcType=VARCHAR},
+      </if>
+      <if test="purchasingMode != null">
+        #{purchasingMode,jdbcType=VARCHAR},
+      </if>
+      <if test="isShopGoods != null">
+        #{isShopGoods,jdbcType=BIT},
+      </if>
+      <if test="isStandby != null">
+        #{isStandby,jdbcType=BIT},
       </if>
       <if test="addTime != null">
         #{addTime,jdbcType=TIMESTAMP},
@@ -175,29 +205,41 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.shangma.cn.entity.BrandExample" resultType="java.lang.Long">
-    select count(*) from t_brand
+  <select id="countByExample" parameterType="com.shangma.cn.entity.GoodsProductExample" resultType="java.lang.Long">
+    select count(*) from t_goods_product
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update t_brand
+    update t_goods_product
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=BIGINT},
       </if>
-      <if test="record.brandName != null">
-        brand_name = #{record.brandName,jdbcType=VARCHAR},
+      <if test="record.prodCode != null">
+        prod_code = #{record.prodCode,jdbcType=VARCHAR},
       </if>
-      <if test="record.brandSite != null">
-        brand_site = #{record.brandSite,jdbcType=VARCHAR},
+      <if test="record.prodName != null">
+        prod_name = #{record.prodName,jdbcType=VARCHAR},
       </if>
-      <if test="record.brandDesc != null">
-        brand_desc = #{record.brandDesc,jdbcType=VARCHAR},
+      <if test="record.prodType != null">
+        prod_type = #{record.prodType,jdbcType=BIGINT},
       </if>
-      <if test="record.brandLogo != null">
-        brand_logo = #{record.brandLogo,jdbcType=VARCHAR},
+      <if test="record.prodBrand != null">
+        prod_brand = #{record.prodBrand,jdbcType=BIGINT},
+      </if>
+      <if test="record.prodModel != null">
+        prod_model = #{record.prodModel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.purchasingMode != null">
+        purchasing_mode = #{record.purchasingMode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isShopGoods != null">
+        is_shop_goods = #{record.isShopGoods,jdbcType=BIT},
+      </if>
+      <if test="record.isStandby != null">
+        is_standby = #{record.isStandby,jdbcType=BIT},
       </if>
       <if test="record.addTime != null">
         add_time = #{record.addTime,jdbcType=TIMESTAMP},
@@ -217,12 +259,16 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update t_brand
+    update t_goods_product
     set id = #{record.id,jdbcType=BIGINT},
-      brand_name = #{record.brandName,jdbcType=VARCHAR},
-      brand_site = #{record.brandSite,jdbcType=VARCHAR},
-      brand_desc = #{record.brandDesc,jdbcType=VARCHAR},
-      brand_logo = #{record.brandLogo,jdbcType=VARCHAR},
+      prod_code = #{record.prodCode,jdbcType=VARCHAR},
+      prod_name = #{record.prodName,jdbcType=VARCHAR},
+      prod_type = #{record.prodType,jdbcType=BIGINT},
+      prod_brand = #{record.prodBrand,jdbcType=BIGINT},
+      prod_model = #{record.prodModel,jdbcType=VARCHAR},
+      purchasing_mode = #{record.purchasingMode,jdbcType=VARCHAR},
+      is_shop_goods = #{record.isShopGoods,jdbcType=BIT},
+      is_standby = #{record.isStandby,jdbcType=BIT},
       add_time = #{record.addTime,jdbcType=TIMESTAMP},
       creator_id = #{record.creatorId,jdbcType=BIGINT},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP},
@@ -231,20 +277,32 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.shangma.cn.entity.Brand">
-    update t_brand
+  <update id="updateByPrimaryKeySelective" parameterType="com.shangma.cn.entity.GoodsProduct">
+    update t_goods_product
     <set>
-      <if test="brandName != null">
-        brand_name = #{brandName,jdbcType=VARCHAR},
+      <if test="prodCode != null">
+        prod_code = #{prodCode,jdbcType=VARCHAR},
       </if>
-      <if test="brandSite != null">
-        brand_site = #{brandSite,jdbcType=VARCHAR},
+      <if test="prodName != null">
+        prod_name = #{prodName,jdbcType=VARCHAR},
       </if>
-      <if test="brandDesc != null">
-        brand_desc = #{brandDesc,jdbcType=VARCHAR},
+      <if test="prodType != null">
+        prod_type = #{prodType,jdbcType=BIGINT},
       </if>
-      <if test="brandLogo != null">
-        brand_logo = #{brandLogo,jdbcType=VARCHAR},
+      <if test="prodBrand != null">
+        prod_brand = #{prodBrand,jdbcType=BIGINT},
+      </if>
+      <if test="prodModel != null">
+        prod_model = #{prodModel,jdbcType=VARCHAR},
+      </if>
+      <if test="purchasingMode != null">
+        purchasing_mode = #{purchasingMode,jdbcType=VARCHAR},
+      </if>
+      <if test="isShopGoods != null">
+        is_shop_goods = #{isShopGoods,jdbcType=BIT},
+      </if>
+      <if test="isStandby != null">
+        is_standby = #{isStandby,jdbcType=BIT},
       </if>
       <if test="addTime != null">
         add_time = #{addTime,jdbcType=TIMESTAMP},
@@ -261,12 +319,16 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.shangma.cn.entity.Brand">
-    update t_brand
-    set brand_name = #{brandName,jdbcType=VARCHAR},
-      brand_site = #{brandSite,jdbcType=VARCHAR},
-      brand_desc = #{brandDesc,jdbcType=VARCHAR},
-      brand_logo = #{brandLogo,jdbcType=VARCHAR},
+  <update id="updateByPrimaryKey" parameterType="com.shangma.cn.entity.GoodsProduct">
+    update t_goods_product
+    set prod_code = #{prodCode,jdbcType=VARCHAR},
+      prod_name = #{prodName,jdbcType=VARCHAR},
+      prod_type = #{prodType,jdbcType=BIGINT},
+      prod_brand = #{prodBrand,jdbcType=BIGINT},
+      prod_model = #{prodModel,jdbcType=VARCHAR},
+      purchasing_mode = #{purchasingMode,jdbcType=VARCHAR},
+      is_shop_goods = #{isShopGoods,jdbcType=BIT},
+      is_standby = #{isStandby,jdbcType=BIT},
       add_time = #{addTime,jdbcType=TIMESTAMP},
       creator_id = #{creatorId,jdbcType=BIGINT},
       update_time = #{updateTime,jdbcType=TIMESTAMP},

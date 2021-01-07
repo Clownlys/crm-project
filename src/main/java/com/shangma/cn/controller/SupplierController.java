@@ -3,6 +3,7 @@ package com.shangma.cn.controller;
 import com.github.pagehelper.PageHelper;
 import com.shangma.cn.common.http.AxiosResult;
 import com.shangma.cn.controller.base.BaseController;
+import com.shangma.cn.dto.SearchSuppilerDto;
 import com.shangma.cn.entity.Supplier;
 import com.shangma.cn.service.SupplierService;
 import com.shangma.cn.vo.PageVo;
@@ -24,12 +25,12 @@ public class SupplierController extends BaseController {
     @Autowired
     private SupplierService supplierService;
 
-    @GetMapping
+    @PostMapping("findPage")
     public AxiosResult<PageVo<Supplier>> findPage(
             @RequestParam(defaultValue = "1") int currentPage
-            , @RequestParam(defaultValue = "5") int pageSize) {
+            , @RequestParam(defaultValue = "5") int pageSize, @RequestBody(required = false) SearchSuppilerDto searchSuppilerDto) {
         PageHelper.startPage(currentPage, pageSize);
-        PageVo<Supplier> page = supplierService.findAll();
+        PageVo<Supplier> page = supplierService.findPage(searchSuppilerDto);
         return AxiosResult.success(page);
     }
 

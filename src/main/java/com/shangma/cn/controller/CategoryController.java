@@ -25,16 +25,17 @@ public class CategoryController extends BaseController {
     private CategoryService categoryService;
 
     @GetMapping("getTreeData")
-    public AxiosResult<List<Category>> getTreeData(){
-        List<Category> list=categoryService.getTreeData();
+    public AxiosResult<List<Category>> getTreeData(@RequestParam(defaultValue = "-1")String categoryName){
+        List<Category> list=categoryService.getTreeData(categoryName);
         return AxiosResult.success(list);
     }
     @GetMapping
     public AxiosResult<PageVo<Category>> findPage(
             @RequestParam(defaultValue = "1") int currentPage
-            , @RequestParam(defaultValue = "5") int pageSize) {
+            , @RequestParam(defaultValue = "5") int pageSize, @RequestParam(defaultValue = "-1")String categoryName) {
         PageHelper.startPage(currentPage, pageSize);
-        PageVo<Category> page = categoryService.findAll();
+//        PageVo<Category> page = categoryService.findAll();
+        PageVo<Category> page = categoryService.searchPage(categoryName);
         return AxiosResult.success(page);
     }
 

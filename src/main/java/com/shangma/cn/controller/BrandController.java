@@ -24,12 +24,25 @@ public class BrandController  extends BaseController {
     @Autowired
     private BrandService brandService;
 
+//    @GetMapping
+//    public AxiosResult<PageVo<Brand>> findPage(
+//            @RequestParam(defaultValue = "1") int currentPage
+//            , @RequestParam(defaultValue = "5") int pageSize) {
+////        System.out.println(searchPageBrand);
+//        PageHelper.startPage(currentPage, pageSize);
+//        PageVo<Brand> page = brandService.findAll();
+////        PageVo<Brand> page=brandService.searchPage(searchPageBrand);
+//        return AxiosResult.success(page);
+//    }
+
     @GetMapping
-    public AxiosResult<PageVo<Brand>> findPage(
+    public AxiosResult<PageVo<Brand>> searchPage(
             @RequestParam(defaultValue = "1") int currentPage
-            , @RequestParam(defaultValue = "5") int pageSize) {
+            , @RequestParam(defaultValue = "5") int pageSize,
+            @RequestParam(defaultValue = "-1") String brandName) {
+        System.out.println(brandName);
         PageHelper.startPage(currentPage, pageSize);
-        PageVo<Brand> page = brandService.findAll();
+        PageVo<Brand> page=brandService.searchPage(brandName);
         return AxiosResult.success(page);
     }
 

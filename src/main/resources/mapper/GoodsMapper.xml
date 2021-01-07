@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.shangma.cn.mapper.BrandMapper">
-  <resultMap id="BaseResultMap" type="com.shangma.cn.entity.Brand">
+<mapper namespace="com.shangma.cn.mapper.GoodsMapper">
+  <resultMap id="BaseResultMap" type="com.shangma.cn.entity.Goods">
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="brand_name" jdbcType="VARCHAR" property="brandName" />
-    <result column="brand_site" jdbcType="VARCHAR" property="brandSite" />
-    <result column="brand_desc" jdbcType="VARCHAR" property="brandDesc" />
-    <result column="brand_logo" jdbcType="VARCHAR" property="brandLogo" />
+    <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
+    <result column="prod_id" jdbcType="BIGINT" property="prodId" />
+    <result column="goods_color" jdbcType="VARCHAR" property="goodsColor" />
+    <result column="purchasing_price" jdbcType="DECIMAL" property="purchasingPrice" />
+    <result column="market_price" jdbcType="DECIMAL" property="marketPrice" />
+    <result column="mall_price" jdbcType="DECIMAL" property="mallPrice" />
+    <result column="goods_stock" jdbcType="BIGINT" property="goodsStock" />
+    <result column="goods_status" jdbcType="TINYINT" property="goodsStatus" />
     <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
     <result column="creator_id" jdbcType="BIGINT" property="creatorId" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
@@ -71,16 +75,16 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, brand_name, brand_site, brand_desc, brand_logo, add_time, creator_id, update_time, 
-    update_id
+    id, goods_name, prod_id, goods_color, purchasing_price, market_price, mall_price, 
+    goods_stock, goods_status, add_time, creator_id, update_time, update_id
   </sql>
-  <select id="selectByExample" parameterType="com.shangma.cn.entity.BrandExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.shangma.cn.entity.GoodsExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from t_brand
+    from t_goods
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -91,46 +95,60 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from t_brand
+    from t_goods
     where id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from t_brand
+    delete from t_goods
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.shangma.cn.entity.BrandExample">
-    delete from t_brand
+  <delete id="deleteByExample" parameterType="com.shangma.cn.entity.GoodsExample">
+    delete from t_goods
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.shangma.cn.entity.Brand">
-    insert into t_brand (id, brand_name, brand_site, 
-      brand_desc, brand_logo, add_time, 
-      creator_id, update_time, update_id
-      )
-    values (#{id,jdbcType=BIGINT}, #{brandName,jdbcType=VARCHAR}, #{brandSite,jdbcType=VARCHAR}, 
-      #{brandDesc,jdbcType=VARCHAR}, #{brandLogo,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP}, 
-      #{creatorId,jdbcType=BIGINT}, #{updateTime,jdbcType=TIMESTAMP}, #{updateId,jdbcType=BIGINT}
-      )
+  <insert id="insert" parameterType="com.shangma.cn.entity.Goods">
+    insert into t_goods (id, goods_name, prod_id, 
+      goods_color, purchasing_price, market_price, 
+      mall_price, goods_stock, goods_status, 
+      add_time, creator_id, update_time, 
+      update_id)
+    values (#{id,jdbcType=BIGINT}, #{goodsName,jdbcType=VARCHAR}, #{prodId,jdbcType=BIGINT}, 
+      #{goodsColor,jdbcType=VARCHAR}, #{purchasingPrice,jdbcType=DECIMAL}, #{marketPrice,jdbcType=DECIMAL}, 
+      #{mallPrice,jdbcType=DECIMAL}, #{goodsStock,jdbcType=BIGINT}, #{goodsStatus,jdbcType=TINYINT}, 
+      #{addTime,jdbcType=TIMESTAMP}, #{creatorId,jdbcType=BIGINT}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updateId,jdbcType=BIGINT})
   </insert>
-  <insert id="insertSelective" parameterType="com.shangma.cn.entity.Brand">
-    insert into t_brand
+  <insert id="insertSelective" parameterType="com.shangma.cn.entity.Goods">
+    insert into t_goods
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
       </if>
-      <if test="brandName != null">
-        brand_name,
+      <if test="goodsName != null">
+        goods_name,
       </if>
-      <if test="brandSite != null">
-        brand_site,
+      <if test="prodId != null">
+        prod_id,
       </if>
-      <if test="brandDesc != null">
-        brand_desc,
+      <if test="goodsColor != null">
+        goods_color,
       </if>
-      <if test="brandLogo != null">
-        brand_logo,
+      <if test="purchasingPrice != null">
+        purchasing_price,
+      </if>
+      <if test="marketPrice != null">
+        market_price,
+      </if>
+      <if test="mallPrice != null">
+        mall_price,
+      </if>
+      <if test="goodsStock != null">
+        goods_stock,
+      </if>
+      <if test="goodsStatus != null">
+        goods_status,
       </if>
       <if test="addTime != null">
         add_time,
@@ -149,17 +167,29 @@
       <if test="id != null">
         #{id,jdbcType=BIGINT},
       </if>
-      <if test="brandName != null">
-        #{brandName,jdbcType=VARCHAR},
+      <if test="goodsName != null">
+        #{goodsName,jdbcType=VARCHAR},
       </if>
-      <if test="brandSite != null">
-        #{brandSite,jdbcType=VARCHAR},
+      <if test="prodId != null">
+        #{prodId,jdbcType=BIGINT},
       </if>
-      <if test="brandDesc != null">
-        #{brandDesc,jdbcType=VARCHAR},
+      <if test="goodsColor != null">
+        #{goodsColor,jdbcType=VARCHAR},
       </if>
-      <if test="brandLogo != null">
-        #{brandLogo,jdbcType=VARCHAR},
+      <if test="purchasingPrice != null">
+        #{purchasingPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="marketPrice != null">
+        #{marketPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="mallPrice != null">
+        #{mallPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsStock != null">
+        #{goodsStock,jdbcType=BIGINT},
+      </if>
+      <if test="goodsStatus != null">
+        #{goodsStatus,jdbcType=TINYINT},
       </if>
       <if test="addTime != null">
         #{addTime,jdbcType=TIMESTAMP},
@@ -175,29 +205,41 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.shangma.cn.entity.BrandExample" resultType="java.lang.Long">
-    select count(*) from t_brand
+  <select id="countByExample" parameterType="com.shangma.cn.entity.GoodsExample" resultType="java.lang.Long">
+    select count(*) from t_goods
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update t_brand
+    update t_goods
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=BIGINT},
       </if>
-      <if test="record.brandName != null">
-        brand_name = #{record.brandName,jdbcType=VARCHAR},
+      <if test="record.goodsName != null">
+        goods_name = #{record.goodsName,jdbcType=VARCHAR},
       </if>
-      <if test="record.brandSite != null">
-        brand_site = #{record.brandSite,jdbcType=VARCHAR},
+      <if test="record.prodId != null">
+        prod_id = #{record.prodId,jdbcType=BIGINT},
       </if>
-      <if test="record.brandDesc != null">
-        brand_desc = #{record.brandDesc,jdbcType=VARCHAR},
+      <if test="record.goodsColor != null">
+        goods_color = #{record.goodsColor,jdbcType=VARCHAR},
       </if>
-      <if test="record.brandLogo != null">
-        brand_logo = #{record.brandLogo,jdbcType=VARCHAR},
+      <if test="record.purchasingPrice != null">
+        purchasing_price = #{record.purchasingPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.marketPrice != null">
+        market_price = #{record.marketPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.mallPrice != null">
+        mall_price = #{record.mallPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.goodsStock != null">
+        goods_stock = #{record.goodsStock,jdbcType=BIGINT},
+      </if>
+      <if test="record.goodsStatus != null">
+        goods_status = #{record.goodsStatus,jdbcType=TINYINT},
       </if>
       <if test="record.addTime != null">
         add_time = #{record.addTime,jdbcType=TIMESTAMP},
@@ -217,12 +259,16 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update t_brand
+    update t_goods
     set id = #{record.id,jdbcType=BIGINT},
-      brand_name = #{record.brandName,jdbcType=VARCHAR},
-      brand_site = #{record.brandSite,jdbcType=VARCHAR},
-      brand_desc = #{record.brandDesc,jdbcType=VARCHAR},
-      brand_logo = #{record.brandLogo,jdbcType=VARCHAR},
+      goods_name = #{record.goodsName,jdbcType=VARCHAR},
+      prod_id = #{record.prodId,jdbcType=BIGINT},
+      goods_color = #{record.goodsColor,jdbcType=VARCHAR},
+      purchasing_price = #{record.purchasingPrice,jdbcType=DECIMAL},
+      market_price = #{record.marketPrice,jdbcType=DECIMAL},
+      mall_price = #{record.mallPrice,jdbcType=DECIMAL},
+      goods_stock = #{record.goodsStock,jdbcType=BIGINT},
+      goods_status = #{record.goodsStatus,jdbcType=TINYINT},
       add_time = #{record.addTime,jdbcType=TIMESTAMP},
       creator_id = #{record.creatorId,jdbcType=BIGINT},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP},
@@ -231,20 +277,32 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.shangma.cn.entity.Brand">
-    update t_brand
+  <update id="updateByPrimaryKeySelective" parameterType="com.shangma.cn.entity.Goods">
+    update t_goods
     <set>
-      <if test="brandName != null">
-        brand_name = #{brandName,jdbcType=VARCHAR},
+      <if test="goodsName != null">
+        goods_name = #{goodsName,jdbcType=VARCHAR},
       </if>
-      <if test="brandSite != null">
-        brand_site = #{brandSite,jdbcType=VARCHAR},
+      <if test="prodId != null">
+        prod_id = #{prodId,jdbcType=BIGINT},
       </if>
-      <if test="brandDesc != null">
-        brand_desc = #{brandDesc,jdbcType=VARCHAR},
+      <if test="goodsColor != null">
+        goods_color = #{goodsColor,jdbcType=VARCHAR},
       </if>
-      <if test="brandLogo != null">
-        brand_logo = #{brandLogo,jdbcType=VARCHAR},
+      <if test="purchasingPrice != null">
+        purchasing_price = #{purchasingPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="marketPrice != null">
+        market_price = #{marketPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="mallPrice != null">
+        mall_price = #{mallPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsStock != null">
+        goods_stock = #{goodsStock,jdbcType=BIGINT},
+      </if>
+      <if test="goodsStatus != null">
+        goods_status = #{goodsStatus,jdbcType=TINYINT},
       </if>
       <if test="addTime != null">
         add_time = #{addTime,jdbcType=TIMESTAMP},
@@ -261,12 +319,16 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.shangma.cn.entity.Brand">
-    update t_brand
-    set brand_name = #{brandName,jdbcType=VARCHAR},
-      brand_site = #{brandSite,jdbcType=VARCHAR},
-      brand_desc = #{brandDesc,jdbcType=VARCHAR},
-      brand_logo = #{brandLogo,jdbcType=VARCHAR},
+  <update id="updateByPrimaryKey" parameterType="com.shangma.cn.entity.Goods">
+    update t_goods
+    set goods_name = #{goodsName,jdbcType=VARCHAR},
+      prod_id = #{prodId,jdbcType=BIGINT},
+      goods_color = #{goodsColor,jdbcType=VARCHAR},
+      purchasing_price = #{purchasingPrice,jdbcType=DECIMAL},
+      market_price = #{marketPrice,jdbcType=DECIMAL},
+      mall_price = #{mallPrice,jdbcType=DECIMAL},
+      goods_stock = #{goodsStock,jdbcType=BIGINT},
+      goods_status = #{goodsStatus,jdbcType=TINYINT},
       add_time = #{addTime,jdbcType=TIMESTAMP},
       creator_id = #{creatorId,jdbcType=BIGINT},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
