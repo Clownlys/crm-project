@@ -236,62 +236,52 @@ public class OrderExample {
             return (Criteria) this;
         }
 
-        public Criteria andOrderTypeEqualTo(String value) {
+        public Criteria andOrderTypeEqualTo(Byte value) {
             addCriterion("order_type =", value, "orderType");
             return (Criteria) this;
         }
 
-        public Criteria andOrderTypeNotEqualTo(String value) {
+        public Criteria andOrderTypeNotEqualTo(Byte value) {
             addCriterion("order_type <>", value, "orderType");
             return (Criteria) this;
         }
 
-        public Criteria andOrderTypeGreaterThan(String value) {
+        public Criteria andOrderTypeGreaterThan(Byte value) {
             addCriterion("order_type >", value, "orderType");
             return (Criteria) this;
         }
 
-        public Criteria andOrderTypeGreaterThanOrEqualTo(String value) {
+        public Criteria andOrderTypeGreaterThanOrEqualTo(Byte value) {
             addCriterion("order_type >=", value, "orderType");
             return (Criteria) this;
         }
 
-        public Criteria andOrderTypeLessThan(String value) {
+        public Criteria andOrderTypeLessThan(Byte value) {
             addCriterion("order_type <", value, "orderType");
             return (Criteria) this;
         }
 
-        public Criteria andOrderTypeLessThanOrEqualTo(String value) {
+        public Criteria andOrderTypeLessThanOrEqualTo(Byte value) {
             addCriterion("order_type <=", value, "orderType");
             return (Criteria) this;
         }
 
-        public Criteria andOrderTypeLike(String value) {
-            addCriterion("order_type like", value, "orderType");
-            return (Criteria) this;
-        }
-
-        public Criteria andOrderTypeNotLike(String value) {
-            addCriterion("order_type not like", value, "orderType");
-            return (Criteria) this;
-        }
-
-        public Criteria andOrderTypeIn(List<String> values) {
+        public Criteria andOrderTypeIn(List<Byte> values) {
             addCriterion("order_type in", values, "orderType");
             return (Criteria) this;
         }
 
-        public Criteria andOrderTypeNotIn(List<String> values) {
+        public Criteria andOrderTypeNotIn(List<Byte> values) {
             addCriterion("order_type not in", values, "orderType");
             return (Criteria) this;
         }
 
-        public Criteria andOrderTypeBetween(String value1, String value2) {
+        public Criteria andOrderTypeBetween(Byte value1, Byte value2) {
             addCriterion("order_type between", value1, value2, "orderType");
             return (Criteria) this;
         }
 
-        public Criteria andOrderTypeNotBetween(String value1, String value2) {
+        public Criteria andOrderTypeNotBetween(Byte value1, Byte value2) {
             addCriterion("order_type not between", value1, value2, "orderType");
             return (Criteria) this;
         }

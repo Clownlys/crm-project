@@ -8,13 +8,13 @@ public class Order {
 
     private Date orderCreateTime;
 
-    private String orderType;
+    private Byte orderType;
 
     private Byte orderAction;
 
     private Byte bussinessType;
 
-    private Byte orderStatus;
+    private Byte  orderStatus;
 
     private String receiverName;
 
@@ -60,12 +60,12 @@ public class Order {
         this.orderCreateTime = orderCreateTime;
     }
 
-    public String getOrderType() {
+    public Byte getOrderType() {
         return orderType;
     }
 
-    public void setOrderType(String orderType) {
-        this.orderType = orderType == null ? null : orderType.trim();
+    public void setOrderType(Byte orderType) {
+        this.orderType = orderType;
     }
 
     public Byte getOrderAction() {

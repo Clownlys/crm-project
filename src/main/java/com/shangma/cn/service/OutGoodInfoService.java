@@ -1,5 +1,6 @@
 package com.shangma.cn.service;
 
+import com.shangma.cn.entity.OutGoodInfo;
 import com.shangma.cn.service.base.BaseService;
 
 /**

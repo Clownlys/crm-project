@@ -102,9 +102,6 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.shangma.cn.entity.OrderGood">
-    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
-      SELECT LAST_INSERT_ID()
-    </selectKey>
     insert into t_order_good (id, order_id, good_id, 
       goot_name, good_price, good_num, 
       total_price)
@@ -113,12 +110,11 @@
       #{totalPrice,jdbcType=DECIMAL})
   </insert>
   <insert id="insertSelective" parameterType="com.shangma.cn.entity.OrderGood">
-    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
-      SELECT LAST_INSERT_ID()
-    </selectKey>
     insert into t_order_good
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      id,
+      <if test="id != null">
+        id,
+      </if>
       <if test="orderId != null">
         order_id,
       </if>
@@ -139,7 +135,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      #{id,jdbcType=BIGINT},
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
       <if test="orderId != null">
         #{orderId,jdbcType=BIGINT},
       </if>

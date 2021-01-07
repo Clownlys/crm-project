@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.shangma.cn.entity.Order">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="order_create_time" jdbcType="TIMESTAMP" property="orderCreateTime" />
-    <result column="order_type" jdbcType="VARCHAR" property="orderType" />
+    <result column="order_type" jdbcType="TINYINT" property="orderType" />
     <result column="order_action" jdbcType="TINYINT" property="orderAction" />
     <result column="bussiness_type" jdbcType="TINYINT" property="bussinessType" />
     <result column="order_status" jdbcType="TINYINT" property="orderStatus" />
@@ -118,9 +118,6 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.shangma.cn.entity.Order">
-    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
-      SELECT LAST_INSERT_ID()
-    </selectKey>
     insert into t_order (id, order_create_time, order_type, 
       order_action, bussiness_type, order_status, 
       receiver_name, user_account, receiver_tel, 
@@ -128,7 +125,7 @@
       delivery_zone, delivery_type, delivery_price, 
       pay_type, own_take_time, receiver_email, 
       remitter, remark)
-    values (#{id,jdbcType=BIGINT}, #{orderCreateTime,jdbcType=TIMESTAMP}, #{orderType,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=BIGINT}, #{orderCreateTime,jdbcType=TIMESTAMP}, #{orderType,jdbcType=TINYINT}, 
       #{orderAction,jdbcType=TINYINT}, #{bussinessType,jdbcType=TINYINT}, #{orderStatus,jdbcType=TINYINT}, 
       #{receiverName,jdbcType=VARCHAR}, #{userAccount,jdbcType=VARCHAR}, #{receiverTel,jdbcType=VARCHAR}, 
       #{receiverPhone,jdbcType=VARCHAR}, #{postalCode,jdbcType=VARCHAR}, #{receiverAddress,jdbcType=VARCHAR}, 
@@ -137,12 +134,11 @@
       #{remitter,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.shangma.cn.entity.Order">
-    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
-      SELECT LAST_INSERT_ID()
-    </selectKey>
     insert into t_order
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      id,
+      <if test="id != null">
+        id,
+      </if>
       <if test="orderCreateTime != null">
         order_create_time,
       </if>
@@ -202,12 +198,14 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      #{id,jdbcType=BIGINT},
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
       <if test="orderCreateTime != null">
         #{orderCreateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="orderType != null">
-        #{orderType,jdbcType=VARCHAR},
+        #{orderType,jdbcType=TINYINT},
       </if>
       <if test="orderAction != null">
         #{orderAction,jdbcType=TINYINT},
@@ -278,7 +276,7 @@
         order_create_time = #{record.orderCreateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.orderType != null">
-        order_type = #{record.orderType,jdbcType=VARCHAR},
+        order_type = #{record.orderType,jdbcType=TINYINT},
       </if>
       <if test="record.orderAction != null">
         order_action = #{record.orderAction,jdbcType=TINYINT},
@@ -340,7 +338,7 @@
     update t_order
     set id = #{record.id,jdbcType=BIGINT},
       order_create_time = #{record.orderCreateTime,jdbcType=TIMESTAMP},
-      order_type = #{record.orderType,jdbcType=VARCHAR},
+      order_type = #{record.orderType,jdbcType=TINYINT},
       order_action = #{record.orderAction,jdbcType=TINYINT},
       bussiness_type = #{record.bussinessType,jdbcType=TINYINT},
       order_status = #{record.orderStatus,jdbcType=TINYINT},
@@ -369,7 +367,7 @@
         order_create_time = #{orderCreateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="orderType != null">
-        order_type = #{orderType,jdbcType=VARCHAR},
+        order_type = #{orderType,jdbcType=TINYINT},
       </if>
       <if test="orderAction != null">
         order_action = #{orderAction,jdbcType=TINYINT},
@@ -428,7 +426,7 @@
   <update id="updateByPrimaryKey" parameterType="com.shangma.cn.entity.Order">
     update t_order
     set order_create_time = #{orderCreateTime,jdbcType=TIMESTAMP},
-      order_type = #{orderType,jdbcType=VARCHAR},
+      order_type = #{orderType,jdbcType=TINYINT},
       order_action = #{orderAction,jdbcType=TINYINT},
       bussiness_type = #{bussinessType,jdbcType=TINYINT},
       order_status = #{orderStatus,jdbcType=TINYINT},

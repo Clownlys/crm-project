@@ -1,5 +1,7 @@
 package com.shangma.cn.mapper;
 
+import com.shangma.cn.entity.InGoodInfo;
+import com.shangma.cn.entity.InGoodInfoExample;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

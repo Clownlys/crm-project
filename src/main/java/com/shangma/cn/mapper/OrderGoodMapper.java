@@ -7,6 +7,6 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-public interface OrderGoodMapper extends BaseMapper {
+public interface OrderGoodMapper extends BaseMapper<OrderGood,Long> {
 
 }
