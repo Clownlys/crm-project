@@ -9,16 +9,14 @@ import com.shangma.cn.common.http.AxiosResult;
 import com.shangma.cn.controller.base.BaseController;
 import com.shangma.cn.entity.Order;
 import com.shangma.cn.service.OrderService;
+import com.shangma.cn.service.impl.OrderAssetsServiceImpl;
 import com.shangma.cn.vo.PageVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Date;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author clownly
@@ -29,6 +27,15 @@ import java.util.List;
 public class OrderController extends BaseController {
     @Autowired
     private OrderService orderService;
+
+    @Autowired
+    private   OrderAssetsServiceImpl orderAssetsService;
+
+    @GetMapping("assets")
+    public AxiosResult<Map<String,Object>> getOrderAssets(){
+
+        return AxiosResult.success(orderAssetsService.getOrderAssets());
+    }
 
     @GetMapping
     public AxiosResult<PageVo<Order>> findPage(

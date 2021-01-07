@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * 文件说明：
  */
 @SpringBootApplication
-@MapperScan(basePackages = "com.shangma.cn.mapper")
+@MapperScan(basePackages = {"com.shangma.cn.mapper","com.shangma.cn.mapper.orderassets"})
 @EnableTransactionManagement
 public class CrmProject {
 
