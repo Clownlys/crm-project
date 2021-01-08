@@ -1,6 +1,8 @@
 package com.shangma.cn.service;
 
+import com.shangma.cn.dto.OutGoodInfoDto;
 import com.shangma.cn.entity.OutGoodInfo;
+import com.shangma.cn.entity.OutStore;
 import com.shangma.cn.service.base.BaseService;
 import com.shangma.cn.vo.PageVo;
 
@@ -12,5 +14,7 @@ import java.util.List;
  */
 public interface OutGoodInfoService extends BaseService<OutGoodInfo,Long> {
 
-    PageVo<OutGoodInfo> findByOutStoreId(Long outStoreId);
+    List<OutGoodInfo> findByOutStoreId(Long outStoreId);
+
+    PageVo<OutGoodInfo> findPageByExample(OutGoodInfoDto outGoodInfoDto);
 }

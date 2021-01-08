@@ -1,19 +1,19 @@
 package com.shangma.cn.entity;
 
+import com.shangma.cn.entity.base.BaseEntity;
 import lombok.Data;
 
 import java.util.Date;
 
 @Data
-public class OutGoodInfo {
-    private Long id;
-
+public class OutGoodInfo extends BaseEntity<Long> {
     private Long outStoreId;
 
     private String goodBrand;
 
     private String goodName;
 
+    /*商品型号*/
     private String goodModel;
 
     private String goodColor;
@@ -26,11 +26,18 @@ public class OutGoodInfo {
 
     private String goodApparentStatus;
 
-    private Date addTime;
-
-    private Long creatorId;
-
-    private Date updateTime;
-
-    private Long updateId;
+    @Override
+    public String toString() {
+        return "OutGoodInfo{" +
+                "outStoreId=" + outStoreId +
+                ", goodBrand='" + goodBrand + '\'' +
+                ", goodName='" + goodName + '\'' +
+                ", goodModel='" + goodModel + '\'' +
+                ", goodColor='" + goodColor + '\'' +
+                ", goodSupplier='" + goodSupplier + '\'' +
+                ", goodTraceMessage='" + goodTraceMessage + '\'' +
+                ", returnFactoryConfig='" + returnFactoryConfig + '\'' +
+                ", goodApparentStatus='" + goodApparentStatus + '\'' +
+                '}';
+    }
 }

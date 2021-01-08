@@ -1,13 +1,12 @@
 package com.shangma.cn.entity;
 
+import com.shangma.cn.entity.base.BaseEntity;
 import lombok.Data;
 
 import java.util.Date;
 
 @Data
-public class InStore {
-    private Long id;
-
+public class InStore extends BaseEntity<Long> {
     private Byte returnInStoreFlag;
 
     private String returnFactoryLocation;
@@ -25,12 +24,4 @@ public class InStore {
     private Date approvalTime;
 
     private Byte approvalStatus;
-
-    private Date addTime;
-
-    private Long creatorId;
-
-    private Date updateTime;
-
-    private Long updateId;
 }
