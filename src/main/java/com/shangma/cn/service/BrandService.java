@@ -12,4 +12,7 @@ import com.shangma.cn.vo.PageVo;
  */
 public interface BrandService  extends BaseService<Brand,Long> {
     PageVo<Brand> searchPage(String brandName);
+
+    PageVo<Brand> findNoPage();
+
 }

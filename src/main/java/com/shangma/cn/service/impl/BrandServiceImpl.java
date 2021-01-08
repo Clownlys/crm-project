@@ -28,4 +28,10 @@ public class BrandServiceImpl extends BaseServiceImpl<Brand,Long> implements Bra
         PageVo<Brand> brandPageVo = setPage(brands);
         return brandPageVo;
     }
+
+    @Override
+    public PageVo<Brand> findNoPage() {
+        List<Brand> brands = brandMapper.selectByExample(null);
+        return setPage(brands);
+    }
 }

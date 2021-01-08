@@ -575,52 +575,52 @@ public class GoodsProductExample {
             return (Criteria) this;
         }
 
-        public Criteria andIsShopGoodsEqualTo(Boolean value) {
+        public Criteria andIsShopGoodsEqualTo(Byte value) {
             addCriterion("is_shop_goods =", value, "isShopGoods");
             return (Criteria) this;
         }
 
-        public Criteria andIsShopGoodsNotEqualTo(Boolean value) {
+        public Criteria andIsShopGoodsNotEqualTo(Byte value) {
             addCriterion("is_shop_goods <>", value, "isShopGoods");
             return (Criteria) this;
         }
 
-        public Criteria andIsShopGoodsGreaterThan(Boolean value) {
+        public Criteria andIsShopGoodsGreaterThan(Byte value) {
             addCriterion("is_shop_goods >", value, "isShopGoods");
             return (Criteria) this;
         }
 
-        public Criteria andIsShopGoodsGreaterThanOrEqualTo(Boolean value) {
+        public Criteria andIsShopGoodsGreaterThanOrEqualTo(Byte value) {
             addCriterion("is_shop_goods >=", value, "isShopGoods");
             return (Criteria) this;
         }
 
-        public Criteria andIsShopGoodsLessThan(Boolean value) {
+        public Criteria andIsShopGoodsLessThan(Byte value) {
             addCriterion("is_shop_goods <", value, "isShopGoods");
             return (Criteria) this;
         }
 
-        public Criteria andIsShopGoodsLessThanOrEqualTo(Boolean value) {
+        public Criteria andIsShopGoodsLessThanOrEqualTo(Byte value) {
             addCriterion("is_shop_goods <=", value, "isShopGoods");
             return (Criteria) this;
         }
 
-        public Criteria andIsShopGoodsIn(List<Boolean> values) {
+        public Criteria andIsShopGoodsIn(List<Byte> values) {
             addCriterion("is_shop_goods in", values, "isShopGoods");
             return (Criteria) this;
         }
 
-        public Criteria andIsShopGoodsNotIn(List<Boolean> values) {
+        public Criteria andIsShopGoodsNotIn(List<Byte> values) {
             addCriterion("is_shop_goods not in", values, "isShopGoods");
             return (Criteria) this;
         }
 
-        public Criteria andIsShopGoodsBetween(Boolean value1, Boolean value2) {
+        public Criteria andIsShopGoodsBetween(Byte value1, Byte value2) {
             addCriterion("is_shop_goods between", value1, value2, "isShopGoods");
             return (Criteria) this;
         }
 
-        public Criteria andIsShopGoodsNotBetween(Boolean value1, Boolean value2) {
+        public Criteria andIsShopGoodsNotBetween(Byte value1, Byte value2) {
             addCriterion("is_shop_goods not between", value1, value2, "isShopGoods");
             return (Criteria) this;
         }
@@ -635,52 +635,52 @@ public class GoodsProductExample {
             return (Criteria) this;
         }
 
-        public Criteria andIsStandbyEqualTo(Boolean value) {
+        public Criteria andIsStandbyEqualTo(Byte value) {
             addCriterion("is_standby =", value, "isStandby");
             return (Criteria) this;
         }
 
-        public Criteria andIsStandbyNotEqualTo(Boolean value) {
+        public Criteria andIsStandbyNotEqualTo(Byte value) {
             addCriterion("is_standby <>", value, "isStandby");
             return (Criteria) this;
         }
 
-        public Criteria andIsStandbyGreaterThan(Boolean value) {
+        public Criteria andIsStandbyGreaterThan(Byte value) {
             addCriterion("is_standby >", value, "isStandby");
             return (Criteria) this;
         }
 
-        public Criteria andIsStandbyGreaterThanOrEqualTo(Boolean value) {
+        public Criteria andIsStandbyGreaterThanOrEqualTo(Byte value) {
             addCriterion("is_standby >=", value, "isStandby");
             return (Criteria) this;
         }
 
-        public Criteria andIsStandbyLessThan(Boolean value) {
+        public Criteria andIsStandbyLessThan(Byte value) {
             addCriterion("is_standby <", value, "isStandby");
             return (Criteria) this;
         }
 
-        public Criteria andIsStandbyLessThanOrEqualTo(Boolean value) {
+        public Criteria andIsStandbyLessThanOrEqualTo(Byte value) {
             addCriterion("is_standby <=", value, "isStandby");
             return (Criteria) this;
         }
 
-        public Criteria andIsStandbyIn(List<Boolean> values) {
+        public Criteria andIsStandbyIn(List<Byte> values) {
             addCriterion("is_standby in", values, "isStandby");
             return (Criteria) this;
         }
 
-        public Criteria andIsStandbyNotIn(List<Boolean> values) {
+        public Criteria andIsStandbyNotIn(List<Byte> values) {
             addCriterion("is_standby not in", values, "isStandby");
             return (Criteria) this;
         }
 
-        public Criteria andIsStandbyBetween(Boolean value1, Boolean value2) {
+        public Criteria andIsStandbyBetween(Byte value1, Byte value2) {
             addCriterion("is_standby between", value1, value2, "isStandby");
             return (Criteria) this;
         }
 
-        public Criteria andIsStandbyNotBetween(Boolean value1, Boolean value2) {
+        public Criteria andIsStandbyNotBetween(Byte value1, Byte value2) {
             addCriterion("is_standby not between", value1, value2, "isStandby");
             return (Criteria) this;
         }

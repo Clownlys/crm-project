@@ -56,6 +56,12 @@ public class CategoryServiceImpl extends BaseServiceImpl<Category,Long> implemen
         return categoryPageVo;
     }
 
+    @Override
+    public PageVo<Category> findNoPage() {
+        List<Category> categories = categoryMapper.selectByExample(null);
+        return setPage(categories);
+    }
+
     public void getChildren(List<Category> categories,Category category){
         List<Category> childrenList = categories.stream().filter(category1 -> category1.getParentId().equals(category.getId())).collect(Collectors.toList());
         if(childrenList.size()>0){

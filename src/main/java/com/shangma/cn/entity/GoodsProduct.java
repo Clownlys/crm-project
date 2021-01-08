@@ -1,8 +1,10 @@
 package com.shangma.cn.entity;
 
+import com.shangma.cn.entity.base.BaseEntity;
 
-public class GoodsProduct {
+import java.util.Date;
 
+public class GoodsProduct extends BaseEntity<Long> {
     private String prodCode;
 
     private String prodName;
@@ -19,9 +21,9 @@ public class GoodsProduct {
 
     private String purchasingMode;
 
-    private Boolean isShopGoods;
+    private Byte isShopGoods;
 
-    private Boolean isStandby;
+    private Byte isStandby;
 
     public Category getCategory() {
         return category;
@@ -37,22 +39,6 @@ public class GoodsProduct {
 
     public void setBrand(Brand brand) {
         this.brand = brand;
-    }
-
-    public Boolean getShopGoods() {
-        return isShopGoods;
-    }
-
-    public void setShopGoods(Boolean shopGoods) {
-        isShopGoods = shopGoods;
-    }
-
-    public Boolean getStandby() {
-        return isStandby;
-    }
-
-    public void setStandby(Boolean standby) {
-        isStandby = standby;
     }
 
     public String getProdCode() {
@@ -103,19 +89,19 @@ public class GoodsProduct {
         this.purchasingMode = purchasingMode == null ? null : purchasingMode.trim();
     }
 
-    public Boolean getIsShopGoods() {
+    public Byte getIsShopGoods() {
         return isShopGoods;
     }
 
-    public void setIsShopGoods(Boolean isShopGoods) {
+    public void setIsShopGoods(Byte isShopGoods) {
         this.isShopGoods = isShopGoods;
     }
 
-    public Boolean getIsStandby() {
+    public Byte getIsStandby() {
         return isStandby;
     }
 
-    public void setIsStandby(Boolean isStandby) {
+    public void setIsStandby(Byte isStandby) {
         this.isStandby = isStandby;
     }
 

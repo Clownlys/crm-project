@@ -24,6 +24,12 @@ public class BrandController  extends BaseController {
     @Autowired
     private BrandService brandService;
 
+    @GetMapping("findNoPage")
+    public AxiosResult<PageVo<Brand>> findNoPage(){
+        PageVo<Brand> page=brandService.findNoPage();
+        return AxiosResult.success(page);
+    }
+
 //    @GetMapping
 //    public AxiosResult<PageVo<Brand>> findPage(
 //            @RequestParam(defaultValue = "1") int currentPage

@@ -15,4 +15,7 @@ public interface CategoryService extends BaseService<Category,Long> {
     List<Category> getTreeData(String categoryName);
 
     PageVo<Category> searchPage(String categoryName);
+
+    PageVo<Category> findNoPage();
+
 }
