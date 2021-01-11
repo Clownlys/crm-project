@@ -4,6 +4,7 @@ import com.shangma.cn.entity.Order;
 import com.shangma.cn.service.base.BaseService;
 import com.shangma.cn.vo.PageVo;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -13,4 +14,6 @@ import java.util.Map;
 public interface OrderService extends BaseService<Order,Long> {
 
     PageVo<Order> findByCondition(Map<String,Object> condition);
+
+    String exportExcel(HashMap<String, Object> map);
 }

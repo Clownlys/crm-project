@@ -1,4 +1,4 @@
-package com.shangma.cn.entity;
+package com.shangma.cn.entity.vo;
 
 import lombok.Data;
 
@@ -6,18 +6,18 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 @Data
-public class Order {
+public class OrderVo {
     private Long id;
 
     private Date orderCreateTime;
 
-    private Byte orderType;
+    private String orderType;
 
-    private Byte orderAction;
+    private String orderAction;
 
-    private Byte bussinessType;
+    private String bussinessType;
 
-    private Byte  orderStatus;
+    private String  orderStatus;
 
     private String receiverName;
 
@@ -33,11 +33,11 @@ public class Order {
 
     private String deliveryZone;
 
-    private Byte deliveryType;
+    private String deliveryType;
 
     private BigDecimal deliveryPrice;
 
-    private Byte payType;
+    private String payType;
 
     private Date ownTakeTime;
 
@@ -63,35 +63,35 @@ public class Order {
         this.orderCreateTime = orderCreateTime;
     }
 
-    public Byte getOrderType() {
+    public String getOrderType() {
         return orderType;
     }
 
-    public void setOrderType(Byte orderType) {
+    public void setOrderType(String orderType) {
         this.orderType = orderType;
     }
 
-    public Byte getOrderAction() {
+    public String getOrderAction() {
         return orderAction;
     }
 
-    public void setOrderAction(Byte orderAction) {
+    public void setOrderAction(String orderAction) {
         this.orderAction = orderAction;
     }
 
-    public Byte getBussinessType() {
+    public String getBussinessType() {
         return bussinessType;
     }
 
-    public void setBussinessType(Byte bussinessType) {
+    public void setBussinessType(String bussinessType) {
         this.bussinessType = bussinessType;
     }
 
-    public Byte getOrderStatus() {
+    public String getOrderStatus() {
         return orderStatus;
     }
 
-    public void setOrderStatus(Byte orderStatus) {
+    public void setOrderStatus(String orderStatus) {
         this.orderStatus = orderStatus;
     }
 
@@ -100,7 +100,7 @@ public class Order {
     }
 
     public void setReceiverName(String receiverName) {
-        this.receiverName = receiverName == null ? null : receiverName.trim();
+        this.receiverName = receiverName;
     }
 
     public String getUserAccount() {
@@ -108,7 +108,7 @@ public class Order {
     }
 
     public void setUserAccount(String userAccount) {
-        this.userAccount = userAccount == null ? null : userAccount.trim();
+        this.userAccount = userAccount;
     }
 
     public String getReceiverTel() {
@@ -116,7 +116,7 @@ public class Order {
     }
 
     public void setReceiverTel(String receiverTel) {
-        this.receiverTel = receiverTel == null ? null : receiverTel.trim();
+        this.receiverTel = receiverTel;
     }
 
     public String getReceiverPhone() {
@@ -124,7 +124,7 @@ public class Order {
     }
 
     public void setReceiverPhone(String receiverPhone) {
-        this.receiverPhone = receiverPhone == null ? null : receiverPhone.trim();
+        this.receiverPhone = receiverPhone;
     }
 
     public String getPostalCode() {
@@ -132,7 +132,7 @@ public class Order {
     }
 
     public void setPostalCode(String postalCode) {
-        this.postalCode = postalCode == null ? null : postalCode.trim();
+        this.postalCode = postalCode;
     }
 
     public String getReceiverAddress() {
@@ -140,7 +140,7 @@ public class Order {
     }
 
     public void setReceiverAddress(String receiverAddress) {
-        this.receiverAddress = receiverAddress == null ? null : receiverAddress.trim();
+        this.receiverAddress = receiverAddress;
     }
 
     public String getDeliveryZone() {
@@ -148,14 +148,14 @@ public class Order {
     }
 
     public void setDeliveryZone(String deliveryZone) {
-        this.deliveryZone = deliveryZone == null ? null : deliveryZone.trim();
+        this.deliveryZone = deliveryZone;
     }
 
-    public Byte getDeliveryType() {
+    public String getDeliveryType() {
         return deliveryType;
     }
 
-    public void setDeliveryType(Byte deliveryType) {
+    public void setDeliveryType(String deliveryType) {
         this.deliveryType = deliveryType;
     }
 
@@ -167,11 +167,11 @@ public class Order {
         this.deliveryPrice = deliveryPrice;
     }
 
-    public Byte getPayType() {
+    public String getPayType() {
         return payType;
     }
 
-    public void setPayType(Byte payType) {
+    public void setPayType(String payType) {
         this.payType = payType;
     }
 
@@ -188,7 +188,7 @@ public class Order {
     }
 
     public void setReceiverEmail(String receiverEmail) {
-        this.receiverEmail = receiverEmail == null ? null : receiverEmail.trim();
+        this.receiverEmail = receiverEmail;
     }
 
     public String getRemitter() {
@@ -196,7 +196,7 @@ public class Order {
     }
 
     public void setRemitter(String remitter) {
-        this.remitter = remitter == null ? null : remitter.trim();
+        this.remitter = remitter;
     }
 
     public String getRemark() {
@@ -204,6 +204,6 @@ public class Order {
     }
 
     public void setRemark(String remark) {
-        this.remark = remark == null ? null : remark.trim();
+        this.remark = remark;
     }
 }

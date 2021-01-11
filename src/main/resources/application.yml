@@ -10,3 +10,10 @@ mybatis:
   mapper-locations: classpath:mapper/*.xml,classpath:mapper/orderassets/*.xml
 server:
   port: 9000
+
+aliyun:
+  key: LTAI4Fz1MSD7vVygd6ii1rer
+  secret: kBNRMvxesvqYwagYJGbyuicoWO7Kq9
+  endpoint: http://oss-cn-beijing.aliyuncs.com
+  bucketName: shangmaershiwuqi
+  baseUrl: https://shangmaershiwuqi.oss-cn-beijing.aliyuncs.com/
